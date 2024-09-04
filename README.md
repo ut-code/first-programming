@@ -1,5 +1,7 @@
 # ut.code(); 五月祭・駒場祭企画「はじめてのプログラミング教室」
 
+Forked from: https://github.com/ut-code/school-festival
+
 ## 初期設定
 
 ```
