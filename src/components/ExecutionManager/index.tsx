@@ -12,7 +12,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { RiPauseFill, RiPlayFill, RiPlayLine } from "react-icons/ri";
-import { BlocklyInterpreter } from "../../commons/interpreter";
+import { BlocklyInterpreter } from "../../common/interpreter";
 
 export type ExecutionManagerProps = {
   interval: number;

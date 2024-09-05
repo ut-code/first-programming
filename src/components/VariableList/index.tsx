@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import { Text, chakra } from "@chakra-ui/react";
 import { Names } from "blockly";
-import { BlocklyInterpreter } from "../../commons/interpreter";
+import { BlocklyInterpreter } from "../../common/interpreter";
 import { javascriptGenerator } from "../../config/blockly";
 
 const Table = chakra("table", {
