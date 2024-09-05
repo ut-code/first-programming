@@ -1,6 +1,6 @@
 import Blockly from "blockly";
-import { MazeDirectionMap } from "../../common/maze";
-import { javascriptGenerator } from "../../config/blockly";
+import { MazeDirectionMap } from "./engine/maze";
+import { javascriptGenerator } from "../common/types.blockly";
 
 export const CUSTOM_MAZE_STEPFORWARD = "custom_maze_stepForward";
 Blockly.Blocks[CUSTOM_MAZE_STEPFORWARD] = {

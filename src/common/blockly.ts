@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import Blockly, { VariableModel } from "blockly";
-import { javascriptGenerator } from "../config/blockly";
+import { javascriptGenerator } from "./types.blockly";
 
 /** ブロックの数が少ない場合 */
 export type BlocklyToolboxDefinitionFlyout = {

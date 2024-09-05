@@ -1,4 +1,4 @@
-import { randInt } from "./random";
+import { randInt } from "../../common/random";
 
 export type MazeCell = {
   location: { x: number; y: number };

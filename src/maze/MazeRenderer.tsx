@@ -4,7 +4,7 @@ import {
   MazeDirection,
   MazeDirectionMap,
   MazeDirections,
-} from "../../common/maze";
+} from "./engine/maze";
 
 const MAZE_CELL_SIZE = 10;
 const MAZE_PADDING = 1;

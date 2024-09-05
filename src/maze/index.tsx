@@ -30,17 +30,17 @@ import {
   CUSTOM_COMMON_WHILE_TRUE,
   CUSTOM_COMMON_WHILE,
   CUSTOM_COMMON_DO_UNTIL,
-} from "../../config/blockly.blocks";
+} from "../common/blocks";
 import { MazeRenderer } from "./MazeRenderer";
 import {
   BlocklyEditorMessage,
   useBlocklyInterpreter,
-} from "../../common/interpreter";
-import { ExecutionManager } from "../../components/ExecutionManager";
+} from "../common/interpreter";
+import { ExecutionManager } from "../components/ExecutionManager";
 import {
   BlocklyToolboxDefinition,
   useBlocklyWorkspace,
-} from "../../common/blockly";
+} from "../common/blockly";
 
 type MazeWorkspaceStateSelf = {
   location: { x: number; y: number };
