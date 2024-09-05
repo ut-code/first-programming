@@ -22,7 +22,7 @@ export type ExecutionManagerProps = {
   onReset(): void;
 };
 
-export function ExecutionManager(props: ExecutionManagerProps): JSX.Element {
+export function ExecutionWindow(props: ExecutionManagerProps): JSX.Element {
   return (
     <VStack align="stretch" spacing={3}>
       <Box>

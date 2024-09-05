@@ -1,5 +1,5 @@
 import Blockly from "blockly";
-import { javascriptGenerator } from "./blockly";
+import { javascriptGenerator } from "./types.blockly";
 
 export const BUILTIN_MATH_NUMBER = "math_number";
 export const BUILTIN_MATH_ARITHMETIC = "math_arithmetic";

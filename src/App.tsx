@@ -1,1 +1,1 @@
-export { MazeWorkspace as App } from "./maze/index";
+export { Maze as App } from "./maze/index";

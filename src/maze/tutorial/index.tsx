@@ -1,5 +1,5 @@
 import { Box, Grid, Text } from "@chakra-ui/react";
-import { TutorialDialogPropsStep } from "../../../components/TutorialDialog";
+import { TutorialDialogPropsStep } from "../../components/TutorialDialog";
 
 export const mazeTutorialSteps: TutorialDialogPropsStep[] = [
   {
