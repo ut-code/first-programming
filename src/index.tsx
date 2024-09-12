@@ -1,8 +1,8 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 
-import "./config/blockly";
-import "./config/blockly.blocks";
+import "./common/types.blockly";
+import "./common/blocks";
 
 import "./global.css";
 

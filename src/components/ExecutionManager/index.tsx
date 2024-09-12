@@ -12,7 +12,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { RiPauseFill, RiPlayFill, RiPlayLine } from "react-icons/ri";
-import { BlocklyInterpreter } from "../../commons/interpreter";
+import { BlocklyInterpreter } from "../../common/interpreter";
 
 export type ExecutionManagerProps = {
   interval: number;
@@ -22,7 +22,7 @@ export type ExecutionManagerProps = {
   onReset(): void;
 };
 
-export function ExecutionManager(props: ExecutionManagerProps): JSX.Element {
+export function ExecutionWindow(props: ExecutionManagerProps): JSX.Element {
   return (
     <VStack align="stretch" spacing={3}>
       <Box>

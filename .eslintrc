@@ -2,6 +2,11 @@
   "root": true,
   "extends": "airbnb-typescript-prettier",
   "rules": {
+    "no-alert": "off",
+    "no-explicit-any": "off",
+    // i fucking turned this off and this is still complaining??
+    "no-use-before-define": "off",
+    "no-underscore-dangle": "off",
     // TypeScript を使う場合不必要
     "import/prefer-default-export": "off",
     "react/destructuring-assignment": "off",
