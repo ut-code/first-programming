@@ -7,6 +7,7 @@ start: build
 	make serve
 
 build:
+	rm -r ./dist
 	npm run build
 
 serve: build build-liveserver
