@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef } from "react";
 import Blockly, { VariableModel } from "blockly";
+import { $ } from "svelte";
 import { javascriptGenerator } from "./types.blockly";
 
 /** ブロックの数が少ない場合 */
@@ -34,12 +34,12 @@ export function useBlocklyWorkspace({
   toolboxDefinition,
   onCodeChange,
 }: UseBlocklyWorkspaceProps): UseBlocklyWorkspaceReturnValue {
-  const workspaceAreaRef = useRef<HTMLDivElement>(null);
-  const workspaceRef = useRef<Blockly.WorkspaceSvg>();
+  let workspaceArea = null;
+  let workspace: Blockly.WorkspaceSvg;
 
-  const highlightBlock = useCallback((id: string) => {
-    workspaceRef.current?.highlightBlock(id);
-  }, []);
+  $: let highlightBlock = (id: string) => {
+    workspace?.highlightBlock(id);
+  };
 
   const getCode = useCallback(
     () => javascriptGenerator.workspaceToCode(workspaceRef.current),
@@ -109,3 +109,4 @@ export function useBlocklyWorkspace({
     getCode,
   };
 }
+</script>
