@@ -13,24 +13,12 @@
         name = "flake-utils-sample";
       in
       {
-        packages.default = pkgs.stdenv.mkDerivation {
-          inherit name;
-          src = ./.;
-          buildInputs = with pkgs; [ bash ];
-          buildPhase = ''
-            mkdir -p $out/bin
-            cat > $out/bin/${name} << EOF
-            #!/usr/bin/env bash
-            echo Hello flake-utils via ${system}!
-            EOF
-            chmod u+x $out/bin/${name}
-          '';
-        };
-
         devShell = pkgs.mkShell {
           inherit name;
-          buildInputs = [ ];
-          shellHook = '''';
+          buildInputs = with pkgs; [ nodejs_22 go ];
+          shellHook = ''
+            
+          '';
         };
       });
 }
