@@ -15,7 +15,11 @@
       {
         devShell = pkgs.mkShell {
           inherit name;
-          buildInputs = with pkgs; [ nodejs_22 go ];
+          buildInputs = with pkgs; [
+            nodejs_22
+            go
+            svelte-language-server
+          ];
           shellHook = ''
             
           '';
