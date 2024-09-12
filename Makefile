@@ -10,7 +10,7 @@ build:
 	rm -r ./dist
 	npm run build
 
-serve: build build-liveserver
+serve: build-liveserver
 	./live-server
 
 fix:
