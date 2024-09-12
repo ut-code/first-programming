@@ -11,7 +11,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-export function HelpDialog(props: {
+export function CommonHelp(props: {
   visible: boolean;
   onClose: () => void;
 }): JSX.Element {

@@ -82,11 +82,17 @@ type Variables = {
   width: number;
   height: number;
   description?: string;
+  allowReset: boolean; // sometime resetting is impossible, such as in 1x2 maze. use this in such case where resetting doesn't make sense.
 };
 
-export function MazeWorkspace({width: w, height: h, description: desc = "迷路の中のアイコンを、ゴールまで導きましょう。"}: Variables): JSX.Element {
+export function MazeWorkspace({
+  width: w,
+  height: h,
+  description: desc = "迷路の中のアイコンを、ゴールまで導きましょう。",
+  allowReset,
+}: Variables): JSX.Element {
   const [getState, setState] = useGetSet(() => createDefaultState(w, h));
-  const goal = useMemo(() => ({ x: w - 1, y: h - 1}), []);
+  const goal = useMemo(() => ({ x: w - 1, y: h - 1 }), []);
 
   // ?????
   const globalFunctions = useRef({
@@ -170,14 +176,16 @@ export function MazeWorkspace({width: w, height: h, description: desc = "迷路�
               direction={getState().self.direction}
             />
           </Box>
-          <Button
-            leftIcon={<Icon as={RiRestartLine} />}
-            onClick={() => {
-              setState(createDefaultState(w, h));
-            }}
-          >
-            新しい迷路にする
-          </Button>
+          {allowReset &&
+            <Button
+              leftIcon={<Icon as={RiRestartLine} />}
+              onClick={() => {
+                setState(createDefaultState(w, h));
+              }}
+            >
+              新しい迷路にする
+            </Button>
+          }
         </Box>
       </Box>
     </Grid>
