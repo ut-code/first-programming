@@ -2,15 +2,21 @@
 
 Forked from: https://github.com/ut-code/school-festival
 
+## 依存
+
+- Node.js
+- Go
+- GNU Make
+
 ## 初期設定
 
-```
-npm ci
+```bash
+make setup
 ```
 
 ## 開発
 
-```
+```make start
 npm run dev
 ```
 

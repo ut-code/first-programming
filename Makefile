@@ -1,5 +1,10 @@
-start:
-	npm run dev
+default: start
+
+setup:
+	npm ci
+
+start: build
+	make serve
 
 build:
 	npm run build
