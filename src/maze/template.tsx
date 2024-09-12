@@ -58,10 +58,10 @@ const defaultSelf: MazeWorkspaceStateSelf = {
 };
 
 function createDefaultState(w: number, h: number): MazeWorkspaceState {
-  return ({
+  return {
     maze: createMaze(w, h),
     self: defaultSelf,
-  });
+  };
 }
 
 const toolboxDefinition: BlocklyToolboxDefinition = {
@@ -89,10 +89,10 @@ export function MazeWorkspace({
   width: w,
   height: h,
   description: desc = "迷路の中のアイコンを、ゴールまで導きましょう。",
-  allowReset,
+  allowReset = true,
 }: Variables): JSX.Element {
   const [getState, setState] = useGetSet(() => createDefaultState(w, h));
-  const goal = useMemo(() => ({ x: w - 1, y: h - 1 }), []);
+  const goal = useMemo(() => ({ x: w - 1, y: h - 1 }), [w, h]);
 
   // ?????
   const globalFunctions = useRef({
@@ -165,9 +165,7 @@ export function MazeWorkspace({
         <Box p={4}>
           <Alert mb={5}>
             <AlertIcon />
-            <AlertDescription>
-              {desc}
-            </AlertDescription>
+            <AlertDescription>{desc}</AlertDescription>
           </Alert>
           <Box mb={5}>
             <MazeRenderer
@@ -176,7 +174,7 @@ export function MazeWorkspace({
               direction={getState().self.direction}
             />
           </Box>
-          {allowReset &&
+          {allowReset && (
             <Button
               leftIcon={<Icon as={RiRestartLine} />}
               onClick={() => {
@@ -185,7 +183,7 @@ export function MazeWorkspace({
             >
               新しい迷路にする
             </Button>
-          }
+          )}
         </Box>
       </Box>
     </Grid>

@@ -2,7 +2,7 @@ import { useToast } from "@chakra-ui/react";
 import JSInterpreter from "js-interpreter";
 import { useCallback, useEffect, useRef, useState } from "react";
 import nullthrows from "nullthrows";
-import { STATEMENT_PREFIX_FUNCTION } from "../common/types.blockly";
+import { STATEMENT_PREFIX_FUNCTION } from "./types.blockly";
 
 export class BlocklyEditorMessage {
   public message: string;
