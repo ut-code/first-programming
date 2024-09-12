@@ -2,10 +2,6 @@ import { useState } from "react";
 
 import Step1 from "./steps/step1";
 
-function NotFound(): JSX.Element {
-  return <div>お探しのページは見つかりませんでした。</div>;
-}
-
 export function Maze() {
   // TODO: consider using path based routing
   const [step, setStep] = useState(1);
@@ -18,4 +14,8 @@ export function Maze() {
     default:
       return <NotFound />;
   }
+}
+
+function NotFound(): JSX.Element {
+  return <div>お探しのページは見つかりませんでした。</div>;
 }
