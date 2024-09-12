@@ -18,7 +18,7 @@ import {
   MazeDirectionMap,
   moveInMaze,
   rotateDirection,
-} from "./engine/maze";
+} from "./engine/core";
 import {
   CUSTOM_MAZE_STEPFORWARD,
   CUSTOM_MAZE_TURN,
@@ -31,7 +31,7 @@ import {
   CUSTOM_COMMON_WHILE,
   CUSTOM_COMMON_DO_UNTIL,
 } from "../common/blocks";
-import { MazeRenderer } from "./MazeRenderer";
+import { MazeRenderer } from "./engine/Renderer";
 import {
   BlocklyEditorMessage,
   useBlocklyInterpreter,

@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Maze,
-  MazeDirection,
-  MazeDirectionMap,
-  MazeDirections,
-} from "./engine/maze";
+import { Maze, MazeDirection, MazeDirectionMap, MazeDirections } from "./core";
 
 const MAZE_CELL_SIZE = 10;
 const MAZE_PADDING = 1;
