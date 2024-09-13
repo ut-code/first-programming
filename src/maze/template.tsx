@@ -83,6 +83,7 @@ type Variables = {
   height: number;
   description?: string;
   allowReset: boolean; // sometime resetting is impossible, such as in 1x2 maze. use this in such case where resetting doesn't make sense.
+  next: (() => void) | null; // what to do after clear
 };
 
 export function MazeWorkspace({
@@ -90,9 +91,11 @@ export function MazeWorkspace({
   height: h,
   description: desc = "迷路の中のアイコンを、ゴールまで導きましょう。",
   allowReset = true,
+  next,
 }: Variables): JSX.Element {
   const [getState, setState] = useGetSet(() => createDefaultState(w, h));
   const goal = useMemo(() => ({ x: w - 1, y: h - 1 }), [w, h]);
+  const [cleared, setCleared] = useState(false);
 
   // ?????
   const globalFunctions = useRef({
@@ -186,6 +189,12 @@ export function MazeWorkspace({
           )}
         </Box>
       </Box>
+      {
+        cleared && next && <Button
+          onClick={next}>
+          次のステージ
+        </Button>
+      }
     </Grid>
   );
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import Step1 from "./steps/step1";
+import Step2 from "./steps/step2";
 
 export function Maze() {
   // TODO: consider using path based routing
@@ -10,7 +11,9 @@ export function Maze() {
     case 1:
       return <Step1 next={() => setStep(2)} />;
     case 2:
-      return <div> Step 2 </div>;
+      return <Step2 next={() => setStep(3)} />;
+    case 3:
+      return <div> Step 3 </div>;
     default:
       return <NotFound />;
   }
