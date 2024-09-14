@@ -86,6 +86,8 @@ type Variables = {
   next: (() => void) | null; // what to do after clear
 };
 
+// NOTE: height should be less than width, otherwise it will overflow to the bottom. (try it)
+// for a better look, height should be around 1/2 * width.
 export function MazeWorkspace({
   width: w,
   height: h,
@@ -187,14 +189,14 @@ export function MazeWorkspace({
               新しい迷路にする
             </Button>
           )}
+          {
+        /* cleared && */ next && <Button
+              onClick={next}>
+              次のステージ
+            </Button>
+          }
         </Box>
       </Box>
-      {
-        cleared && next && <Button
-          onClick={next}>
-          次のステージ
-        </Button>
-      }
     </Grid>
   );
 }
