@@ -117,6 +117,7 @@ export function MazeWorkspace({
         self: { ...state.self, location: nextCell.location },
       });
       if (nextCell.location.x === goal.x && nextCell.location.y === goal.y) {
+        setCleared(true);
         throw new BlocklyEditorMessage("迷路をクリアしました！");
       }
     },
