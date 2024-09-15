@@ -10,7 +10,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        name = "flake-utils-sample";
+        name = "first-programming";
       in
       {
         devShell = pkgs.mkShell {
