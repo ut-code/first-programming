@@ -191,10 +191,9 @@ export function MazeWorkspace({
             </Button>
           )}
           {
-        /* cleared && */ next && <Button
-              onClick={next}>
-              次のステージ
-            </Button>
+            /* cleared && */ next && (
+              <Button onClick={next}>次のステージ</Button>
+            )
           }
         </Box>
       </Box>
