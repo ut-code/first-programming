@@ -3,6 +3,7 @@ import Step1 from "./steps/step1";
 import Step2 from "./steps/step2";
 import { step1, step3 } from "./tutorials";
 import type { TutorialDialogPropsStep } from "../components/TutorialDialog";
+import Step3 from "./steps/step3";
 
 type Props = { setHint: (hint: TutorialDialogPropsStep[] | null) => void };
 
@@ -15,7 +16,7 @@ export function Maze({ setHint }: Props) {
       case 1:
         return setHint(step1);
       case 2:
-        return setHint(step3);
+        return setHint(step1);
       case 3:
         return setHint(step3);
       default:
@@ -29,7 +30,7 @@ export function Maze({ setHint }: Props) {
     case 2:
       return <Step2 prev={() => setStep(1)} next={() => setStep(3)} />;
     case 3:
-      return <div> Step 3 </div>;
+      return <Step3 prev={() => setStep(2)} />;
     default:
       step satisfies never;
   }

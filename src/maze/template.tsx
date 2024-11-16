@@ -1,5 +1,5 @@
 import { Alert, AlertDescription, AlertIcon, Box, Button, Divider, Grid, Icon } from "@chakra-ui/react";
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { RiRestartLine } from "react-icons/ri";
 import { useGetSet } from "react-use";
 import { type BlocklyToolboxDefinition, useBlocklyWorkspace } from "../common/blockly";
@@ -63,13 +63,13 @@ type Variables = {
   width: number;
   height: number;
   description?: string;
-  allowReset: boolean; // sometime resetting is impossible, such as in 1x2 maze. use this in such case where resetting doesn't make sense.
+  allowReset: boolean; // sometimes resetting is impossible, such as in 1x2 maze. use this in such case where resetting doesn't make sense.
   prev: (() => void) | null; // what to do on "go back" button
   next: (() => void) | null; // what to do after clear
 };
 
 // NOTE: height should be less than width, otherwise it will overflow to the bottom. (try it)
-// for a better look, height should be around 1/2 * width.
+// for a better look, height should be around 1 ~ 1/2 * width.
 export function MazeWorkspace({
   width: w,
   height: h,
@@ -80,6 +80,7 @@ export function MazeWorkspace({
 }: Variables): JSX.Element {
   const [getState, setState] = useGetSet(() => createDefaultState(w, h));
   const goal = { x: w - 1, y: h - 1 };
+  const [cleared, setCleared] = useState(false);
 
   const globalFunctions = useRef({
     [CUSTOM_MAZE_STEPFORWARD]: () => {
@@ -165,7 +166,11 @@ export function MazeWorkspace({
               新しい迷路にする
             </Button>
           )}
-          {next && <Button onClick={next}>次のステージ</Button>}
+          {next && (
+            <Button variant={cleared ? "solid" : "unstyled"} onClick={next}>
+              次のステージ
+            </Button>
+          )}
         </Box>
       </Box>
     </Grid>
