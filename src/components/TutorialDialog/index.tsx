@@ -10,8 +10,10 @@ import {
   ModalHeader,
   ModalOverlay,
 } from "@chakra-ui/react";
+import { useAtom } from "jotai";
 import { Fragment, useState } from "react";
 import { RiArrowRightSLine } from "react-icons/ri";
+import { isHintOpen } from "../../atoms";
 
 export type TutorialDialogProps = {
   title: string;
@@ -24,9 +26,10 @@ export type TutorialDialogPropsStep = { title: string; content: JSX.Element };
 
 export function TutorialDialog(props: TutorialDialogProps): JSX.Element {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isOpen, setIsHintOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useAtom(isHintOpen);
   function onClose() {
-    setIsHintOpen(false);
+    setIsOpen(false);
+    setSelectedIndex(0);
     props.onClose();
   }
 
@@ -77,7 +80,7 @@ export function TutorialDialog(props: TutorialDialogProps): JSX.Element {
               次へ
             </Button>
             {(!props.isFirstView || selectedIndex === props.steps.length - 1) && (
-              <Button colorScheme="blue" onClick={onClose}>
+              <Button variant="outline" onClick={onClose}>
                 はじめる
               </Button>
             )}

@@ -1,16 +1,18 @@
 import { Box, Button, Flex, Icon, Link, Spacer, chakra } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiGithubFill, RiQuestionFill } from "react-icons/ri";
 import { CommonHelp } from "../components/HelpDialog";
 import { Logo } from "../components/Logo";
+import { useAtom } from "jotai";
+import { isHintOpen } from "../atoms";
 
 type Props = {
   Hint: JSX.Element;
   children: JSX.Element;
 };
 export function GlobalHeader({ Hint, children }: Props) {
-  const [showCommonHelp, setShowCommonHelp] = useState(true);
-  const [showHint, setShowHint] = useState(false);
+  const [showCommonHelp, setShowCommonHelp] = useState(false);
+  const [_, setShowHint] = useAtom(isHintOpen);
 
   return (
     <>
@@ -72,7 +74,7 @@ export function GlobalHeader({ Hint, children }: Props) {
         }}
         visible={showCommonHelp}
       />
-      {showHint && Hint}
+      {Hint}
     </>
   );
 }
