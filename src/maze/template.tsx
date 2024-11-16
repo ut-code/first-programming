@@ -64,6 +64,7 @@ type Variables = {
   height: number;
   description?: string;
   allowReset: boolean; // sometime resetting is impossible, such as in 1x2 maze. use this in such case where resetting doesn't make sense.
+  prev: (() => void) | null; // what to do on "go back" button
   next: (() => void) | null; // what to do after clear
 };
 
@@ -74,13 +75,12 @@ export function MazeWorkspace({
   height: h,
   description: desc = "迷路の中のアイコンを、ゴールまで導きましょう。",
   allowReset = true,
+  prev,
   next,
 }: Variables): JSX.Element {
   const [getState, setState] = useGetSet(() => createDefaultState(w, h));
-  const goal = useMemo(() => ({ x: w - 1, y: h - 1 }), [w, h]);
-  const [cleared, setCleared] = useState(false);
+  const goal = { x: w - 1, y: h - 1 };
 
-  // ?????
   const globalFunctions = useRef({
     [CUSTOM_MAZE_STEPFORWARD]: () => {
       const state = getState();
@@ -92,7 +92,6 @@ export function MazeWorkspace({
         self: { ...state.self, location: nextCell.location },
       });
       if (nextCell.location.x === goal.x && nextCell.location.y === goal.y) {
-        setCleared(true);
         throw new BlocklyEditorMessage("迷路をクリアしました！");
       }
     },
@@ -155,6 +154,7 @@ export function MazeWorkspace({
               direction={getState().self.direction}
             />
           </Box>
+          {prev && <Button onClick={prev}>前のステージ</Button>}
           {allowReset && (
             <Button
               leftIcon={<Icon as={RiRestartLine} />}
@@ -165,7 +165,7 @@ export function MazeWorkspace({
               新しい迷路にする
             </Button>
           )}
-          {/* cleared && */ next && <Button onClick={next}>次のステージ</Button>}
+          {next && <Button onClick={next}>次のステージ</Button>}
         </Box>
       </Box>
     </Grid>

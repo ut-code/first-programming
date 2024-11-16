@@ -1,7 +1,11 @@
 import { Box, Grid, Text } from "@chakra-ui/react";
 import type { TutorialDialogPropsStep } from "../../components/TutorialDialog";
 
-export const mazeTutorialSteps: TutorialDialogPropsStep[] = [
+export const step1: TutorialDialogPropsStep[] = [
+  {
+    title: "TODO: blockly の説明を入れる",
+    content: <>blockly の説明をここに</>,
+  },
   {
     title: "ゴールまで行く",
     content: (
@@ -11,6 +15,9 @@ export const mazeTutorialSteps: TutorialDialogPropsStep[] = [
       </>
     ),
   },
+];
+
+export const step3: TutorialDialogPropsStep[] = [
   {
     title: "どんな迷路でも",
     content: (

@@ -24,9 +24,14 @@ export type TutorialDialogPropsStep = { title: string; content: JSX.Element };
 
 export function TutorialDialog(props: TutorialDialogProps): JSX.Element {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isOpen, setIsHintOpen] = useState<boolean>(true);
+  function onClose() {
+    setIsHintOpen(false);
+    props.onClose();
+  }
 
   return (
-    <Modal size="4xl" isOpen onClose={props.onClose}>
+    <Modal size="4xl" isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>{props.title}</ModalHeader>
@@ -72,7 +77,7 @@ export function TutorialDialog(props: TutorialDialogProps): JSX.Element {
               次へ
             </Button>
             {(!props.isFirstView || selectedIndex === props.steps.length - 1) && (
-              <Button colorScheme="blue" onClick={props.onClose}>
+              <Button colorScheme="blue" onClick={onClose}>
                 はじめる
               </Button>
             )}
