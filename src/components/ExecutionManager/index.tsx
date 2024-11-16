@@ -1,18 +1,18 @@
 import {
+  Box,
   Button,
+  Flex,
   Grid,
   Icon,
-  Text,
   Slider,
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
-  Flex,
-  Box,
+  Text,
   VStack,
 } from "@chakra-ui/react";
 import { RiPauseFill, RiPlayFill, RiPlayLine } from "react-icons/ri";
-import { BlocklyInterpreter } from "../../common/interpreter";
+import type { BlocklyInterpreter } from "../../common/interpreter";
 
 export type ExecutionManagerProps = {
   interval: number;
@@ -49,11 +49,7 @@ export function ExecutionWindow(props: ExecutionManagerProps): JSX.Element {
               一時停止
             </Button>
           ) : (
-            <Button
-              variant="outline"
-              leftIcon={<Icon as={RiPlayLine} />}
-              onClick={props.interpreter.resume}
-            >
+            <Button variant="outline" leftIcon={<Icon as={RiPlayLine} />} onClick={props.interpreter.resume}>
               再開
             </Button>
           )}
@@ -80,10 +76,7 @@ export function ExecutionWindow(props: ExecutionManagerProps): JSX.Element {
             <Slider
               min={0}
               max={1000}
-              value={
-                1000 -
-                (Math.log((props.interval + 100) / 100) / Math.log(20)) * 1000
-              }
+              value={1000 - (Math.log((props.interval + 100) / 100) / Math.log(20)) * 1000}
               onChange={(value) => {
                 props.setInterval(20 ** ((1000 - value) / 1000) * 100 - 100);
               }}

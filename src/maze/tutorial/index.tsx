@@ -1,21 +1,13 @@
 import { Box, Grid, Text } from "@chakra-ui/react";
-import { TutorialDialogPropsStep } from "../../components/TutorialDialog";
+import type { TutorialDialogPropsStep } from "../../components/TutorialDialog";
 
 export const mazeTutorialSteps: TutorialDialogPropsStep[] = [
   {
     title: "ゴールまで行く",
     content: (
       <>
-        <Text my={2}>
-          ブロックを並べて、迷路内にいる赤いアイコンを右下の旗印の場所まで移動させましょう。
-        </Text>
-        <video
-          src={new URL("./maze-basic.mp4", import.meta.url).toString()}
-          muted
-          autoPlay
-          loop
-          width="100%"
-        />
+        <Text my={2}>ブロックを並べて、迷路内にいる赤いアイコンを右下の旗印の場所まで移動させましょう。</Text>
+        <video src={new URL("./maze-basic.mp4", import.meta.url).toString()} muted autoPlay loop width="100%" />
       </>
     ),
   },
@@ -28,13 +20,7 @@ export const mazeTutorialSteps: TutorialDialogPropsStep[] = [
           <strong>どんな迷路にも対応できる</strong>
           プログラムを作りましょう。
         </Text>
-        <video
-          src={new URL("./maze-advanced.mp4", import.meta.url).toString()}
-          muted
-          autoPlay
-          loop
-          width="100%"
-        />
+        <video src={new URL("./maze-advanced.mp4", import.meta.url).toString()} muted autoPlay loop width="100%" />
       </>
     ),
   },
@@ -50,11 +36,7 @@ export const mazeTutorialSteps: TutorialDialogPropsStep[] = [
             シンプルなアルゴリズムですが、島が存在しない単純な迷路は必ず方法で解くことができます。用意されたブロックのみを用いて「左手法」はどのように表現されるでしょうか。
           </Text>
         </Box>
-        <img
-          width="100%"
-          src={new URL("./maze-method.svg", import.meta.url).toString()}
-          alt="左手法"
-        />
+        <img width="100%" src={new URL("./maze-method.svg", import.meta.url).toString()} alt="左手法" />
       </Grid>
     ),
   },
@@ -62,11 +44,7 @@ export const mazeTutorialSteps: TutorialDialogPropsStep[] = [
     title: "ヒント",
     content: (
       <Grid templateColumns="4fr 3fr" gap={3}>
-        <img
-          width="100%"
-          src={new URL("./maze-hint.svg", import.meta.url).toString()}
-          alt="ヒント"
-        />
+        <img width="100%" src={new URL("./maze-hint.svg", import.meta.url).toString()} alt="ヒント" />
         <Box>
           <Text my={2}>
             迷路においてプレーヤーが歩かなければならない距離は非常に長いですが、実際は一歩一歩の積み重ねにすぎません。この一歩をもう少し詳しく見てみましょう。

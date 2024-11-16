@@ -1,5 +1,5 @@
+import Blockly, { type VariableModel } from "blockly";
 import { useCallback, useEffect, useRef } from "react";
-import Blockly, { VariableModel } from "blockly";
 import { javascriptGenerator } from "./types.blockly";
 
 /** ブロックの数が少ない場合 */
@@ -15,9 +15,7 @@ export type BlocklyToolboxDefinitionCategory = {
   enableVariables?: boolean;
 };
 
-export type BlocklyToolboxDefinition =
-  | BlocklyToolboxDefinitionFlyout
-  | BlocklyToolboxDefinitionCategory;
+export type BlocklyToolboxDefinition = BlocklyToolboxDefinitionFlyout | BlocklyToolboxDefinitionCategory;
 
 export type UseBlocklyWorkspaceProps = {
   toolboxDefinition: BlocklyToolboxDefinition;
@@ -41,10 +39,7 @@ export function useBlocklyWorkspace({
     workspaceRef.current?.highlightBlock(id);
   }, []);
 
-  const getCode = useCallback(
-    () => javascriptGenerator.workspaceToCode(workspaceRef.current),
-    []
-  );
+  const getCode = useCallback(() => javascriptGenerator.workspaceToCode(workspaceRef.current), []);
 
   useEffect(() => {
     const workspaceArea = workspaceAreaRef.current;
@@ -70,9 +65,7 @@ export function useBlocklyWorkspace({
                     type,
                   })),
                 })),
-                ...(toolboxDefinition.enableVariables
-                  ? [{ kind: "category", name: "変数", custom: "VARIABLE" }]
-                  : []),
+                ...(toolboxDefinition.enableVariables ? [{ kind: "category", name: "変数", custom: "VARIABLE" }] : []),
               ],
             },
       grid: { spacing: 20, length: 3, colour: "#ccc", snap: true },
@@ -89,9 +82,7 @@ export function useBlocklyWorkspace({
           // onCodeChange(latestCode, workspace.getAllVariableNames());
           onCodeChange(
             latestCode,
-            Blockly.Variables.allUsedVarModels(workspace).map(
-              (model: VariableModel) => model.name
-            )
+            Blockly.Variables.allUsedVarModels(workspace).map((model: VariableModel) => model.name),
           );
         }
       });

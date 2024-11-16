@@ -1,14 +1,14 @@
 import {
-  Text,
+  AspectRatio,
+  Button,
   Modal,
-  ModalHeader,
+  ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalOverlay,
-  ModalBody,
-  AspectRatio,
   ModalFooter,
-  Button,
+  ModalHeader,
+  ModalOverlay,
+  Text,
 } from "@chakra-ui/react";
 
 export function CommonHelp(props: {

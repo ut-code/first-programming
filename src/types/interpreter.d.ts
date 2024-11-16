@@ -120,10 +120,7 @@ declare module "js-interpreter" {
 
     NUMBER_ONE: number;
 
-    constructor(
-      code: string | ESTree.Program,
-      opt_initFunc?: (i: Interpreter, scope: Interpreter.MyObject) => void
-    );
+    constructor(code: string | ESTree.Program, opt_initFunc?: (i: Interpreter, scope: Interpreter.MyObject) => void);
 
     /**
      * @const {!Object} Configuration used for all Acorn parsing.
@@ -309,10 +306,7 @@ declare module "js-interpreter" {
      * @param {!Interpreter.MyObject} pseudoRegexp The existing object to set.
      * @param {!RegExp} nativeRegexp The native regular expression.
      */
-    populateRegExp(
-      pseudoRegexp: Interpreter.MyObject,
-      nativeRegexp: RegExp
-    ): void;
+    populateRegExp(pseudoRegexp: Interpreter.MyObject, nativeRegexp: RegExp): void;
 
     /**
      * Create a new function.
@@ -320,10 +314,7 @@ declare module "js-interpreter" {
      * @param {!Object} scope Parent scope.
      * @return {!Interpreter.MyObject} New function.
      */
-    createFunction(
-      node: ESTree.FunctionDeclaration,
-      scope: Interpreter.MyObject
-    ): Interpreter.MyObject;
+    createFunction(node: ESTree.FunctionDeclaration, scope: Interpreter.MyObject): Interpreter.MyObject;
 
     /**
      * Create a new native function.
@@ -334,10 +325,7 @@ declare module "js-interpreter" {
      * Defaults to undefined.
      * @return {!Interpreter.MyObject} New function.
      */
-    createNativeFunction(
-      nativeFunc: Interpreter.NativeFunction,
-      opt_constructor?: boolean
-    ): Interpreter.MyObject;
+    createNativeFunction(nativeFunc: Interpreter.NativeFunction, opt_constructor?: boolean): Interpreter.MyObject;
 
     /**
      * Create a new native asynchronous function.
@@ -362,10 +350,7 @@ declare module "js-interpreter" {
      * @param {Object=} opt_cycles Cycle detection (used in recursive calls).
      * @return {*} The equivalent native JS object or value.
      */
-    pseudoToNative(
-      pseudoObj: Interpreter.MyValue,
-      opt_cycles?: Interpreter.MyValueTable
-    ): any;
+    pseudoToNative(pseudoObj: Interpreter.MyValue, opt_cycles?: Interpreter.MyValueTable): any;
 
     /**
      * Look up the prototype for this value.
@@ -380,10 +365,7 @@ declare module "js-interpreter" {
      * @param {Interpreter.MyValue} name Name of property.
      * @return {Interpreter.MyValue} Property value (may be undefined).
      */
-    getProperty(
-      obj: Interpreter.MyValue,
-      name: Interpreter.MyValue
-    ): Interpreter.MyValue;
+    getProperty(obj: Interpreter.MyValue, name: Interpreter.MyValue): Interpreter.MyValue;
 
     /**
      * Does the named property exist on a data object.
@@ -407,7 +389,7 @@ declare module "js-interpreter" {
       obj: Interpreter.MyObject,
       name: Interpreter.MyValue,
       value: Interpreter.MyValue | ReferenceErrorConstructor,
-      opt_descriptor?: any
+      opt_descriptor?: any,
     ): Interpreter.MyObject;
 
     /**
@@ -432,10 +414,7 @@ declare module "js-interpreter" {
      * @param {Interpreter.MyObject} parentScope Scope to link to.
      * @return {!Interpreter.MyObject} New scope.
      */
-    createScope(
-      node: ESTree.Node,
-      parentScope: Interpreter.MyObject
-    ): Interpreter.MyObject;
+    createScope(node: ESTree.Node, parentScope: Interpreter.MyObject): Interpreter.MyObject;
 
     /**
      * Create a new special scope dictionary. Similar to createScope(), but
@@ -446,10 +425,7 @@ declare module "js-interpreter" {
      *     scope.
      * @return {!Interpreter.MyObject} New scope.
      */
-    createSpecialScope(
-      parentScope: Interpreter.MyObject,
-      opt_scope?: Interpreter.MyObject
-    ): Interpreter.MyObject;
+    createSpecialScope(parentScope: Interpreter.MyObject, opt_scope?: Interpreter.MyObject): Interpreter.MyObject;
 
     /**
      * Retrieves a value from the scope chain.
@@ -467,10 +443,7 @@ declare module "js-interpreter" {
      * @return {!Interpreter.MyObject|undefined} Returns a setter function if one
      *     needs to be called, otherwise undefined.
      */
-    setValueToScope(
-      name: string,
-      value: Interpreter.MyValue
-    ): Interpreter.MyObject;
+    setValueToScope(name: string, value: Interpreter.MyValue): Interpreter.MyObject;
 
     /**
      * Create a new scope for the given node.
@@ -518,7 +491,7 @@ declare module "js-interpreter" {
         0: Interpreter.MyObject;
         1: string;
       },
-      value: Interpreter.MyValue
+      value: Interpreter.MyValue,
     ): Interpreter.MyObject;
 
     /**
@@ -530,10 +503,7 @@ declare module "js-interpreter" {
      *   provided) or the value to throw (if no message).
      * @param {string=} opt_message Message being thrown.
      */
-    throwException(
-      errorClass: Interpreter.MyObject,
-      opt_message?: string
-    ): void;
+    throwException(errorClass: Interpreter.MyObject, opt_message?: string): void;
 
     /**
      * Throw an exception in the interpreter that can be handled by a
@@ -552,7 +522,7 @@ declare module "js-interpreter" {
      */
     createGetter_(
       func: Interpreter.MyObject,
-      left: Interpreter.MyObject | Array<Interpreter.MyObject>
+      left: Interpreter.MyObject | Array<Interpreter.MyObject>,
     ): Interpreter.MyState;
 
     /**
@@ -566,7 +536,7 @@ declare module "js-interpreter" {
     createSetter_(
       func: Interpreter.MyObject,
       left: Interpreter.MyObject | Array<Interpreter.MyObject>,
-      value: Interpreter.MyValue
+      value: Interpreter.MyValue,
     ): Interpreter.MyState;
 
     private stepArrayExpression(stack, state, node);

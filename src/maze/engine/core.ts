@@ -12,17 +12,9 @@ export const MazeDirectionMap = {
   BOTTOM: "bottom",
   LEFT: "left",
 } as const;
-export type MazeDirection = typeof MazeDirectionMap extends Record<
-  string,
-  infer U
->
-  ? U
-  : never;
+export type MazeDirection = typeof MazeDirectionMap extends Record<string, infer U> ? U : never;
 export const MazeDirections: MazeDirection[] = Object.values(MazeDirectionMap);
-export const MazeDirectionVectorMap: Record<
-  MazeDirection,
-  { x: number; y: number }
-> = {
+export const MazeDirectionVectorMap: Record<MazeDirection, { x: number; y: number }> = {
   [MazeDirectionMap.TOP]: { x: 0, y: -1 },
   [MazeDirectionMap.RIGHT]: { x: 1, y: 0 },
   [MazeDirectionMap.BOTTOM]: { x: 0, y: 1 },
@@ -35,23 +27,15 @@ export const ReversedMazeDirectionMap: Record<MazeDirection, MazeDirection> = {
   [MazeDirectionMap.LEFT]: MazeDirectionMap.RIGHT,
 };
 
-export function moveInMaze(
-  maze: Maze,
-  cell: MazeCell,
-  direction: MazeDirection
-): MazeCell | undefined {
+export function moveInMaze(maze: Maze, cell: MazeCell, direction: MazeDirection): MazeCell | undefined {
   return maze[cell.location.y + MazeDirectionVectorMap[direction].y]?.[
     cell.location.x + MazeDirectionVectorMap[direction].x
   ];
 }
 
-export function rotateDirection(
-  direction1: MazeDirection,
-  direction2: MazeDirection
-): MazeDirection {
+export function rotateDirection(direction1: MazeDirection, direction2: MazeDirection): MazeDirection {
   return MazeDirections[
-    (MazeDirections.indexOf(direction1) + MazeDirections.indexOf(direction2)) %
-      MazeDirections.length
+    (MazeDirections.indexOf(direction1) + MazeDirections.indexOf(direction2)) % MazeDirections.length
   ];
 }
 
@@ -60,10 +44,8 @@ export function createMaze(width: number, height: number): Maze {
     Array.from(Array(width), (_x, x) => ({
       location: { x, y },
       visited: false,
-      walls: Object.fromEntries(
-        MazeDirections.map((direction) => [direction, true])
-      ) as Record<MazeDirection, boolean>,
-    }))
+      walls: Object.fromEntries(MazeDirections.map((direction) => [direction, true])) as Record<MazeDirection, boolean>,
+    })),
   );
   const visitedCells = new Set<MazeCell>();
 
@@ -72,11 +54,9 @@ export function createMaze(width: number, height: number): Maze {
       MazeDirections.some((direction) => {
         const nextCell = moveInMaze(maze, cell, direction);
         return nextCell && !visitedCells.has(nextCell);
-      })
+      }),
     );
-    let currentCell =
-      firstCellOptions[randInt(firstCellOptions.length)] ??
-      maze[randInt(height)][randInt(width)];
+    let currentCell = firstCellOptions[randInt(firstCellOptions.length)] ?? maze[randInt(height)][randInt(width)];
     // eslint-disable-next-line no-constant-condition
     while (true) {
       visitedCells.add(currentCell);
@@ -84,17 +64,13 @@ export function createMaze(width: number, height: number): Maze {
         // eslint-disable-next-line no-loop-func
         (direction) => {
           const nextCell = moveInMaze(maze, currentCell, direction);
-          return nextCell && !visitedCells.has(nextCell)
-            ? { nextCell, direction }
-            : [];
-        }
+          return nextCell && !visitedCells.has(nextCell) ? { nextCell, direction } : [];
+        },
       );
       if (!nextOptions.length) break;
       const nextOption = nextOptions[randInt(nextOptions.length)];
       currentCell.walls[nextOption.direction] = false;
-      nextOption.nextCell.walls[
-        ReversedMazeDirectionMap[nextOption.direction]
-      ] = false;
+      nextOption.nextCell.walls[ReversedMazeDirectionMap[nextOption.direction]] = false;
       currentCell = nextOption.nextCell;
     }
   }

@@ -1,46 +1,27 @@
+import { Alert, AlertDescription, AlertIcon, Box, Button, Divider, Grid, Icon } from "@chakra-ui/react";
 import { useMemo, useRef, useState } from "react";
-import { useGetSet } from "react-use";
-import {
-  Box,
-  Divider,
-  Grid,
-  Alert,
-  AlertIcon,
-  AlertDescription,
-  Button,
-  Icon,
-} from "@chakra-ui/react";
 import { RiRestartLine } from "react-icons/ri";
+import { useGetSet } from "react-use";
+import { type BlocklyToolboxDefinition, useBlocklyWorkspace } from "../common/blockly";
 import {
-  createMaze,
-  Maze,
-  MazeDirection,
+  CUSTOM_COMMON_DO_UNTIL,
+  CUSTOM_COMMON_IF,
+  CUSTOM_COMMON_IF_ELSE,
+  CUSTOM_COMMON_WHILE,
+  CUSTOM_COMMON_WHILE_TRUE,
+} from "../common/blocks";
+import { BlocklyEditorMessage, useBlocklyInterpreter } from "../common/interpreter";
+import { ExecutionWindow } from "../components/ExecutionManager";
+import { CUSTOM_MAZE_CHECKWALL, CUSTOM_MAZE_STEPFORWARD, CUSTOM_MAZE_TURN } from "./blocks";
+import { MazeRenderer } from "./engine/Renderer";
+import {
+  type Maze,
+  type MazeDirection,
   MazeDirectionMap,
+  createMaze,
   moveInMaze,
   rotateDirection,
 } from "./engine/core";
-import {
-  CUSTOM_MAZE_STEPFORWARD,
-  CUSTOM_MAZE_TURN,
-  CUSTOM_MAZE_CHECKWALL,
-} from "./blocks";
-import {
-  CUSTOM_COMMON_IF,
-  CUSTOM_COMMON_IF_ELSE,
-  CUSTOM_COMMON_WHILE_TRUE,
-  CUSTOM_COMMON_WHILE,
-  CUSTOM_COMMON_DO_UNTIL,
-} from "../common/blocks";
-import { MazeRenderer } from "./engine/Renderer";
-import {
-  BlocklyEditorMessage,
-  useBlocklyInterpreter,
-} from "../common/interpreter";
-import { ExecutionWindow } from "../components/ExecutionManager";
-import {
-  BlocklyToolboxDefinition,
-  useBlocklyWorkspace,
-} from "../common/blockly";
 
 type MazeWorkspaceStateSelf = {
   location: { x: number; y: number };
@@ -103,15 +84,9 @@ export function MazeWorkspace({
   const globalFunctions = useRef({
     [CUSTOM_MAZE_STEPFORWARD]: () => {
       const state = getState();
-      const currentCell =
-        state.maze[state.self.location.y][state.self.location.x];
-      const nextCell = moveInMaze(
-        state.maze,
-        currentCell,
-        state.self.direction
-      );
-      if (!nextCell || currentCell.walls[state.self.direction])
-        throw new Error("壁があるため、進むことができません。");
+      const currentCell = state.maze[state.self.location.y][state.self.location.x];
+      const nextCell = moveInMaze(state.maze, currentCell, state.self.direction);
+      if (!nextCell || currentCell.walls[state.self.direction]) throw new Error("壁があるため、進むことができません。");
       setState({
         ...state,
         self: { ...state.self, location: nextCell.location },
@@ -190,11 +165,7 @@ export function MazeWorkspace({
               新しい迷路にする
             </Button>
           )}
-          {
-            /* cleared && */ next && (
-              <Button onClick={next}>次のステージ</Button>
-            )
-          }
+          {/* cleared && */ next && <Button onClick={next}>次のステージ</Button>}
         </Box>
       </Box>
     </Grid>

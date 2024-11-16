@@ -1,17 +1,17 @@
-import { Fragment, useState } from "react";
-import { RiArrowRightSLine } from "react-icons/ri";
 import {
+  Button,
+  HStack,
+  Icon,
   Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button,
-  Icon,
-  HStack,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
 } from "@chakra-ui/react";
+import { Fragment, useState } from "react";
+import { RiArrowRightSLine } from "react-icons/ri";
 
 export type TutorialDialogProps = {
   title: string;
@@ -71,8 +71,7 @@ export function TutorialDialog(props: TutorialDialogProps): JSX.Element {
             >
               次へ
             </Button>
-            {(!props.isFirstView ||
-              selectedIndex === props.steps.length - 1) && (
+            {(!props.isFirstView || selectedIndex === props.steps.length - 1) && (
               <Button colorScheme="blue" onClick={props.onClose}>
                 はじめる
               </Button>

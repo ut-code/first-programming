@@ -1,16 +1,8 @@
-import {
-  Box,
-  Flex,
-  chakra,
-  Icon,
-  Link,
-  Button,
-  Spacer,
-} from "@chakra-ui/react";
-import { RiQuestionFill, RiGithubFill } from "react-icons/ri";
+import { Box, Button, Flex, Icon, Link, Spacer, chakra } from "@chakra-ui/react";
 import { useState } from "react";
-import { Logo } from "../components/Logo";
+import { RiGithubFill, RiQuestionFill } from "react-icons/ri";
 import { CommonHelp } from "../components/HelpDialog";
+import { Logo } from "../components/Logo";
 
 type Props = {
   Hint: JSX.Element;
@@ -23,26 +15,13 @@ export function GlobalHeader({ Hint, children }: Props) {
   return (
     <>
       <Flex direction="column" height="100%">
-        <Flex
-          align="center"
-          justify="space-between"
-          shadow="md"
-          backgroundColor="gray.50"
-          px={3}
-        >
+        <Flex align="center" justify="space-between" shadow="md" backgroundColor="gray.50" px={3}>
           <Logo />
           <Box display={{ base: "none", lg: "block" }} fontSize="xl">
             はじめてのプログラミング
           </Box>
           <Spacer />
-          <Button
-            colorScheme="blue"
-            variant="outline"
-            onClick={() => setShowCommonHelp(true)}
-            px={3}
-            py={2}
-            m={3}
-          >
+          <Button colorScheme="blue" variant="outline" onClick={() => setShowCommonHelp(true)} px={3} py={2} m={3}>
             基本操作
           </Button>
 

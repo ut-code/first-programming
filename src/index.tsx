@@ -6,8 +6,8 @@ import "./common/blocks";
 
 import "./global.css";
 
-import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter } from "react-router-dom";
 import { App } from "./App";
 
 const root = document.getElementById("root");
@@ -20,5 +20,5 @@ createRoot(root).render(
         <App />
       </ChakraProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

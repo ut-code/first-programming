@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Maze, MazeDirection, MazeDirectionMap, MazeDirections } from "./core";
+import { type Maze, type MazeDirection, MazeDirectionMap, MazeDirections } from "./core";
 
 const MAZE_CELL_SIZE = 10;
 const MAZE_PADDING = 1;
@@ -12,21 +12,14 @@ export function MazeRenderer(props: {
   const mazeWidth = props.maze[0].length;
   const mazeHeight = props.maze.length;
 
-  const [rotation, setRotation] = useState(
-    MazeDirections.indexOf(props.direction)
-  );
+  const [rotation, setRotation] = useState(MazeDirections.indexOf(props.direction));
   useEffect(() => {
-    const rotationDiff =
-      (MazeDirections.indexOf(props.direction) - rotation) % 4;
+    const rotationDiff = (MazeDirections.indexOf(props.direction) - rotation) % 4;
     setRotation(
       rotation +
-        [
-          rotationDiff - MazeDirections.length,
-          rotationDiff,
-          rotationDiff + MazeDirections.length,
-        ].reduce((previous, current) =>
-          Math.abs(previous) > Math.abs(current) ? current : previous
-        )
+        [rotationDiff - MazeDirections.length, rotationDiff, rotationDiff + MazeDirections.length].reduce(
+          (previous, current) => (Math.abs(previous) > Math.abs(current) ? current : previous),
+        ),
     );
   }, [props.direction, rotation]);
 
@@ -47,50 +40,30 @@ export function MazeRenderer(props: {
             stroke="#000"
             strokeWidth={0.6}
             strokeLinecap="round"
-            transform={`translate(${x * MAZE_CELL_SIZE}, ${
-              y * MAZE_CELL_SIZE
-            })`}
+            transform={`translate(${x * MAZE_CELL_SIZE}, ${y * MAZE_CELL_SIZE})`}
           >
-            {cell.walls[MazeDirectionMap.TOP] && (
-              <line x1={0} y1={0} x2={MAZE_CELL_SIZE} y2={0} />
-            )}
+            {cell.walls[MazeDirectionMap.TOP] && <line x1={0} y1={0} x2={MAZE_CELL_SIZE} y2={0} />}
             {cell.walls[MazeDirectionMap.RIGHT] && (
-              <line
-                x1={MAZE_CELL_SIZE}
-                y1={0}
-                x2={MAZE_CELL_SIZE}
-                y2={MAZE_CELL_SIZE}
-              />
+              <line x1={MAZE_CELL_SIZE} y1={0} x2={MAZE_CELL_SIZE} y2={MAZE_CELL_SIZE} />
             )}
             {cell.walls[MazeDirectionMap.BOTTOM] && (
-              <line
-                x1={0}
-                y1={MAZE_CELL_SIZE}
-                x2={MAZE_CELL_SIZE}
-                y2={MAZE_CELL_SIZE}
-              />
+              <line x1={0} y1={MAZE_CELL_SIZE} x2={MAZE_CELL_SIZE} y2={MAZE_CELL_SIZE} />
             )}
-            {cell.walls[MazeDirectionMap.LEFT] && (
-              <line x1={0} y1={0} x2={0} y2={MAZE_CELL_SIZE} />
-            )}
+            {cell.walls[MazeDirectionMap.LEFT] && <line x1={0} y1={0} x2={0} y2={MAZE_CELL_SIZE} />}
           </g>
-        ))
+        )),
       )}
       <path
-        transform={[
-          "translate(",
-          MAZE_CELL_SIZE * (mazeWidth - 1),
-          ",",
-          MAZE_CELL_SIZE * (mazeHeight - 1),
-          ")",
-        ].join("")}
+        transform={["translate(", MAZE_CELL_SIZE * (mazeWidth - 1), ",", MAZE_CELL_SIZE * (mazeHeight - 1), ")"].join(
+          "",
+        )}
         d={[
           `M ${MAZE_CELL_SIZE * 0.35},${MAZE_CELL_SIZE * 0.2}`,
           `V ${MAZE_CELL_SIZE * 0.8}`,
           `H ${MAZE_CELL_SIZE * 0.4}`,
           `V ${MAZE_CELL_SIZE * 0.5}`,
           `L ${MAZE_CELL_SIZE * 0.7},${MAZE_CELL_SIZE * 0.35}`,
-          `Z`,
+          "Z",
         ].join(" ")}
         fill="#ccc"
       />

@@ -1,4 +1,4 @@
-import Blockly, { Block, CodeGenerator } from "blockly";
+import Blockly, { type Block, type CodeGenerator } from "blockly";
 import { javascriptGenerator as originalJavascriptGenerator } from "blockly/javascript";
 import Ja from "blockly/msg/ja";
 

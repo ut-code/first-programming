@@ -1,7 +1,7 @@
-import { ReactNode, useEffect, useState } from "react";
 import { Text, chakra } from "@chakra-ui/react";
 import { Names } from "blockly";
-import { BlocklyInterpreter } from "../../common/interpreter";
+import { type ReactNode, useEffect, useState } from "react";
+import type { BlocklyInterpreter } from "../../common/interpreter";
 import { javascriptGenerator } from "../../common/types.blockly";
 
 const Table = chakra("table", {
@@ -49,12 +49,12 @@ export default function VariableList({
             ((javascriptGenerator as any).nameDB_ as Names).getName(
               // eslint-disable-line
               name,
-              Names.NameType.VARIABLE
-            )
+              Names.NameType.VARIABLE,
+            ),
             // 空白文字を _ に置き換えたあと encodeURIComponent で UTF-8 に変換し、さらに % を _ に置き換え
             // encodeURIComponent(name.replace(/\s+/g, "_")).replace(/%/g, "_")
           ),
-        }))
+        })),
       );
     };
     interpreter.addListener("step", onStep);
@@ -76,22 +76,12 @@ export default function VariableList({
             {variables?.map(({ name, value }) => {
               let rendered: ReactNode = renderVariable?.(value);
               if (!rendered) {
-                if (typeof value === "string")
-                  rendered = <Text>{value.toString()}</Text>;
-                else if (
-                  typeof value === "number" ||
-                  typeof value === "boolean"
-                )
+                if (typeof value === "string") rendered = <Text>{value.toString()}</Text>;
+                else if (typeof value === "number" || typeof value === "boolean")
                   rendered = <Text color="blue.700">{value.toString()}</Text>;
-                else if (value === null)
-                  rendered = <Text color="gray.500">null</Text>;
-                else if (value === undefined)
-                  rendered = <Text color="gray.500">値がありません</Text>;
-                else
-                  throw new Error(
-                    `変数 ${name} の値 ${value} を表示できません。`,
-                    { cause: value }
-                  );
+                else if (value === null) rendered = <Text color="gray.500">null</Text>;
+                else if (value === undefined) rendered = <Text color="gray.500">値がありません</Text>;
+                else throw new Error(`変数 ${name} の値 ${value} を表示できません。`, { cause: value });
               }
               return (
                 <Tr key={name}>
