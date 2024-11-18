@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ut-code/school-festival.git"
+    "url": "git+https://github.com/ut-code/first-programming.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ut-code/school-festival/issues"
+    "url": "https://github.com/ut-code/first-programming/issues"
   },
-  "homepage": "https://github.com/ut-code/school-festival#readme",
+  "homepage": "https://github.com/ut-code/first-programming#readme",
   "dependencies": {
     "@chakra-ui/react": "^2.10.3",
     "@emotion/react": "^11.13.3",

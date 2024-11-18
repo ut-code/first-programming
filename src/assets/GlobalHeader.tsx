@@ -58,7 +58,7 @@ export function GlobalHeader({ Hint, children }: Props) {
               px={2}
               target="_blank"
               rel="noopener noreferrer"
-              href="https://github.com/ut-code/may-fes-93-algorithm"
+              href="https://github.com/ut-code/first-programming"
             >
               <Icon w={6} h={6} as={RiGithubFill} />
             </Link>
