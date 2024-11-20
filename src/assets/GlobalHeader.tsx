@@ -37,7 +37,7 @@ export function GlobalHeader({ Hint, children }: Props) {
                 setShowHint(true);
               }}
             >
-              ヒント
+              ヘルプ
             </chakra.button>
             <chakra.button
               px={2}
