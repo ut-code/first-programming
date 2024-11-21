@@ -197,8 +197,16 @@ export function MazeWorkspace({
               </Button>
             )}
             {next && (
-              <Button variant={cleared ? "solid" : "unstyled"} onClick={next}>
-                次のステージ
+              <Button
+                variant={cleared ? "solid" : "unstyled"}
+                onClick={next}
+                px={4}
+                type="button"
+                transition="color 0.2s, opacity 0.2s"
+                colorScheme="blue"
+                opacity={cleared ? 1 : 0.5}
+              >
+                次のステージへ
               </Button>
             )}
           </Box>

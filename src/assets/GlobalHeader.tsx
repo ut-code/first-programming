@@ -58,18 +58,18 @@ export function GlobalHeader({ Hint, children }: Props) {
           >
             基本操作
           </Button>
+          <Button
+            px={4}
+            type="button"
+            transition="color 0.2s"
+            colorScheme="blue"
+            onClick={() => {
+              setShowHint(true);
+            }}
+          >
+            ヘルプ
+          </Button>
           <Box display="flex" alignItems="stretch">
-            <chakra.button
-              px={4}
-              type="button"
-              transition="color 0.2s"
-              _hover={{ color: "blue.300" }}
-              onClick={() => {
-                setShowHint(true);
-              }}
-            >
-              ヘルプ
-            </chakra.button>
             <chakra.button
               px={2}
               type="button"

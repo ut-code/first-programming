@@ -19,7 +19,7 @@ export function CommonHelp(props: {
     <Modal size="3xl" isOpen={props.visible} onClose={props.onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>ヘルプ</ModalHeader>
+        <ModalHeader>基本操作</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Text mb={3}>下の動画を見て、基本操作を学習できます。</Text>
