@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { GlobalHeader } from "./assets/GlobalHeader";
-import { TutorialDialog, type TutorialDialogPropsStep } from "./components/TutorialDialog";
+import {
+  TutorialDialog,
+  type TutorialDialogPropsStep,
+} from "./components/Dialogs/TutorialDialog";
 import { Maze } from "./maze";
 import { useAtom } from "jotai";
 import { isHintOpen } from "./atoms";

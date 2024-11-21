@@ -1,5 +1,5 @@
 import { Box, Grid, Text } from "@chakra-ui/react";
-import type { TutorialDialogPropsStep } from "../../components/TutorialDialog";
+import type { TutorialDialogPropsStep } from "../../components/Dialogs/TutorialDialog";
 
 export const step1: TutorialDialogPropsStep[] = [
   {
@@ -33,6 +33,28 @@ export const step1: TutorialDialogPropsStep[] = [
         </Text>
         <video
           src={new URL("./maze-step1.mp4", import.meta.url).toString()}
+          muted
+          autoPlay
+          loop
+          width="100%"
+        />
+      </>
+    ),
+  },
+];
+export const step2: TutorialDialogPropsStep[] = [
+  {
+    title: "もっと動かしてみましょう！",
+    content: (
+      <>
+        <Text my={2}>
+          ステップ 1
+          のクリアおめでとうございます！ブロックの組み方はわかったでしょうか？ステップ
+          2 ではもう少し大きな迷路をクリアしてみましょう。
+          右下の「はじめる」ボタンをクリックしてください！
+        </Text>
+        <video
+          src={new URL("./maze-step2.mp4", import.meta.url).toString()}
           muted
           autoPlay
           loop

@@ -13,7 +13,7 @@ import {
 import { useAtom } from "jotai";
 import { Fragment, useState } from "react";
 import { RiArrowRightSLine } from "react-icons/ri";
-import { isHintOpen } from "../../atoms";
+import { isHintOpen } from "../../../atoms";
 
 export type TutorialDialogProps = {
   title: string;
@@ -79,7 +79,8 @@ export function TutorialDialog(props: TutorialDialogProps): JSX.Element {
             >
               次へ
             </Button>
-            {(!props.isFirstView || selectedIndex === props.steps.length - 1) && (
+            {(!props.isFirstView ||
+              selectedIndex === props.steps.length - 1) && (
               <Button variant="outline" onClick={onClose}>
                 はじめる
               </Button>

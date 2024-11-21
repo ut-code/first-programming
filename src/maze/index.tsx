@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Step1 from "./steps/step1";
 import Step2 from "./steps/step2";
-import { step1, step3 } from "./tutorials";
-import type { TutorialDialogPropsStep } from "../components/TutorialDialog";
+import { step1, step2, step3 } from "./tutorials";
+import type { TutorialDialogPropsStep } from "../components/Dialogs/TutorialDialog";
 import Step3 from "./steps/step3";
 
 type Props = { setHint: (hint: TutorialDialogPropsStep[] | null) => void };
@@ -16,7 +16,7 @@ export function Maze({ setHint }: Props) {
       case 1:
         return setHint(step1);
       case 2:
-        return setHint(step1);
+        return setHint(step2);
       case 3:
         return setHint(step3);
       default:

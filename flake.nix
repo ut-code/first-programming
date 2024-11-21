@@ -15,9 +15,8 @@
       {
         devShell = pkgs.mkShell {
           inherit name;
-          buildInputs = with pkgs; [ nodejs_22 go bun ];
+          buildInputs = with pkgs; [ bun ];
           shellHook = ''
-            
           '';
         };
       });

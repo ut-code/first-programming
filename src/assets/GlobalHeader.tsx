@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Icon, Link, Spacer, chakra } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { RiGithubFill, RiQuestionFill } from "react-icons/ri";
-import { CommonHelp } from "../components/HelpDialog";
+import { CommonHelp } from "../components/Dialogs/HelpDialog";
 import { Logo } from "../components/Logo";
 import { useAtom } from "jotai";
 import { isHintOpen } from "../atoms";
