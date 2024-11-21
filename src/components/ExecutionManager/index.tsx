@@ -49,14 +49,19 @@ export function ExecutionWindow(props: ExecutionManagerProps): JSX.Element {
               一時停止
             </Button>
           ) : (
-            <Button variant="outline" leftIcon={<Icon as={RiPlayLine} />} onClick={props.interpreter.resume}>
+            <Button
+              variant="outline"
+              leftIcon={<Icon as={RiPlayLine} />}
+              onClick={props.interpreter.resume}
+            >
               再開
             </Button>
           )}
           <Button
-            variant="outline"
+            variant="solid"
             leftIcon={<Icon as={RiPauseFill} />}
             isDisabled={props.interpreter.state === "stopped"}
+            colorScheme="blue"
             onClick={() => {
               props.onReset();
               props.interpreter.stop();
@@ -76,7 +81,10 @@ export function ExecutionWindow(props: ExecutionManagerProps): JSX.Element {
             <Slider
               min={0}
               max={1000}
-              value={1000 - (Math.log((props.interval + 100) / 100) / Math.log(20)) * 1000}
+              value={
+                1000 -
+                (Math.log((props.interval + 100) / 100) / Math.log(20)) * 1000
+              }
               onChange={(value) => {
                 props.setInterval(20 ** ((1000 - value) / 1000) * 100 - 100);
               }}

@@ -46,7 +46,7 @@ export function GlobalHeader({ Hint, children }: Props) {
               window.location.href = "https://kf75.utcode.net";
             }}
           >
-            駒場祭ホームページへ
+            駒場祭トップページへ
           </Button>
           <Button
             colorScheme="blue"

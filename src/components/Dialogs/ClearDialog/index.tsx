@@ -35,8 +35,9 @@ export function ClearDialog(props: {
           ) : (
             <Text mb={3}>
               お疲れ様でした！これでこの企画は終わりとなります。
-              トップページに戻るボタンをおしてください！
-              もう一度遊びたい場合は、「キャンセル」をおしてください。
+              駒場祭トップページに戻る場合は「戻る」ボタンをおしてください！
+              もう一度遊びたい場合、他の迷路も試してみたい場合は、「キャンセル」をおしてください。
+              遊んでくださり、ありがとうございました！
             </Text>
           )}
         </ModalBody>
@@ -63,7 +64,7 @@ export function ClearDialog(props: {
               >
                 キャンセル
               </Button>
-              <Button onClick={props.home} colorScheme="blue">
+              <Button onClick={props.home} colorScheme="green">
                 トップページに戻る
               </Button>
             </>

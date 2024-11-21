@@ -143,7 +143,7 @@ export function MazeWorkspace({
     },
   }).current;
 
-  const [interval, setInterval] = useState(500);
+  const [interval, setInterval] = useState(100);
 
   const { workspaceAreaRef, highlightBlock, getCode } = useBlocklyWorkspace({
     toolboxDefinition,
@@ -185,7 +185,6 @@ export function MazeWorkspace({
                 direction={getState().self.direction}
               />
             </Box>
-            {prev && <Button onClick={prev}>前のステージ</Button>}
             {allowReset && (
               <Button
                 leftIcon={<Icon as={RiRestartLine} />}
@@ -196,6 +195,9 @@ export function MazeWorkspace({
                 新しい迷路にする
               </Button>
             )}
+          </Box>
+          <Box pl={4}>
+            {prev && <Button onClick={prev}>前のステージ</Button>}
             {next && (
               <Button
                 variant={cleared ? "solid" : "unstyled"}
@@ -204,7 +206,6 @@ export function MazeWorkspace({
                 type="button"
                 transition="color 0.2s, opacity 0.2s"
                 colorScheme="blue"
-                opacity={cleared ? 1 : 0.5}
               >
                 次のステージへ
               </Button>

@@ -52,9 +52,9 @@ export function TutorialDialog(props: TutorialDialogProps): JSX.Element {
                 {i > 0 && <Icon mx={2} w={5} h={5} as={RiArrowRightSLine} />}
                 <Button
                   key={step.title}
-                  colorScheme="blue"
-                  variant={i === selectedIndex ? "solid" : "ghost"}
-                  isDisabled={i === selectedIndex}
+                  colorScheme={i === selectedIndex ? "blue" : undefined}
+                  variant={i === selectedIndex ? "solid" : "unstyled"}
+                  // isDisabled={i === selectedIndex}
                   onClick={() => {
                     setSelectedIndex(i);
                   }}
@@ -71,6 +71,7 @@ export function TutorialDialog(props: TutorialDialogProps): JSX.Element {
             <Button
               isDisabled={selectedIndex === 0}
               onClick={() => setSelectedIndex(selectedIndex - 1)}
+              variant={"outline"}
             >
               前へ
             </Button>
@@ -78,12 +79,13 @@ export function TutorialDialog(props: TutorialDialogProps): JSX.Element {
               isDisabled={selectedIndex === props.steps.length - 1}
               onClick={() => setSelectedIndex(selectedIndex + 1)}
               colorScheme={props.isFirstView ? "blue" : undefined}
+              variant={"outline"}
             >
               次へ
             </Button>
             {(!props.isFirstView ||
               selectedIndex === props.steps.length - 1) && (
-              <Button variant="outline" onClick={onClose}>
+              <Button onClick={onClose} variant={"solid"} colorScheme={"blue"}>
                 はじめる
               </Button>
             )}

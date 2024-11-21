@@ -9,7 +9,7 @@ export default function Step2({ prev, next }: Props) {
     <MazeWorkspace
       height={1}
       width={5}
-      description="step2: いろんなブロックも使ってみよう"
+      description="step2: いろんなブロックを使ってみよう"
       allowReset={false}
       prev={prev}
       next={next}
