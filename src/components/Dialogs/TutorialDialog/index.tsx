@@ -68,21 +68,23 @@ export function TutorialDialog(props: TutorialDialogProps): JSX.Element {
         </ModalBody>
         <ModalFooter>
           <HStack spacing={2}>
-            <Button
-              isDisabled={selectedIndex === 0}
-              onClick={() => setSelectedIndex(selectedIndex - 1)}
-              variant={"outline"}
-            >
-              前へ
-            </Button>
-            <Button
-              isDisabled={selectedIndex === props.steps.length - 1}
-              onClick={() => setSelectedIndex(selectedIndex + 1)}
-              colorScheme={props.isFirstView ? "blue" : undefined}
-              variant={"outline"}
-            >
-              次へ
-            </Button>
+            {selectedIndex !== 0 && (
+              <Button
+                onClick={() => setSelectedIndex(selectedIndex - 1)}
+                variant={"outline"}
+              >
+                前へ
+              </Button>
+            )}
+            {selectedIndex !== props.steps.length - 1 && (
+              <Button
+                onClick={() => setSelectedIndex(selectedIndex + 1)}
+                colorScheme={props.isFirstView ? "blue" : undefined}
+                variant={"outline"}
+              >
+                次へ
+              </Button>
+            )}
             {(!props.isFirstView ||
               selectedIndex === props.steps.length - 1) && (
               <Button onClick={onClose} variant={"solid"} colorScheme={"blue"}>
