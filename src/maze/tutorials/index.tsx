@@ -78,7 +78,7 @@ export const step3: TutorialDialogPropsStep[] = [
           プログラムを作りましょう。
         </Text>
         <Video
-          src={new URL("./maze-advanced.mp4", import.meta.url).toString()}
+          src={new URL("./maze-step3-2.mp4", import.meta.url).toString()}
         />
       </>
     ),
@@ -106,13 +106,14 @@ export const step3: TutorialDialogPropsStep[] = [
   {
     title: "テンプレート",
     content: (
-      <Grid templateColumns="4fr 3fr" gap={3}>
-        <Box>
-          <Text my={2}>
-            ブロックの一番下にテンプレートが用意されています。このテンプレートに赤色のブロックを加えることで、どんな迷路にも対応できるプログラムを作ることができます。左手法を意識して、いろいろな迷路をクリアしてみましょう！
-          </Text>
-        </Box>
-      </Grid>
+      <>
+        <Text my={2}>
+          ブロックの一番下にテンプレートが用意されています。このテンプレートに<strong>赤色の</strong>ブロックを加えることで、どんな迷路にも対応できるプログラムを作ることができます。左手法を意識して、いろいろな迷路をクリアしてみましょう！
+        </Text>
+        <Video
+          src={new URL("./maze-step3-4.mp4", import.meta.url).toString()}
+        />
+      </>
     ),
   },
 ];
@@ -130,7 +131,7 @@ export const step4: TutorialDialogPropsStep[] = [
           個のブロックだけで、アルゴリズムを組むこともできるんです。ぜひ挑戦してみてくださいね！
         </Text>
         <Video
-          src={new URL("./maze-advanced.mp4", import.meta.url).toString()}
+          src={new URL("./maze-step4-1.mp4", import.meta.url).toString()}
         />
       </>
     ),

@@ -197,7 +197,7 @@ export function MazeWorkspace({
             )}
           </Box>
           <Box pl={4}>
-            {prev && <Button onClick={prev}>前のステージ</Button>}
+            {prev && <Button onClick={prev}>前のステージへ</Button>}
             {next && (
               <Button
                 variant={cleared ? "solid" : "unstyled"}
