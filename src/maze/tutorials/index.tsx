@@ -32,7 +32,7 @@ export const step1: TutorialDialogPropsStep[] = [
           いつでも見返してくださいね。では、右下の「はじめる」ボタンをクリックしてください！
         </Text>
         <video
-          src={new URL("./maze-basic.mp4", import.meta.url).toString()}
+          src={new URL("./maze-step1.mp4", import.meta.url).toString()}
           muted
           autoPlay
           loop
