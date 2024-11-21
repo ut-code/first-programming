@@ -122,9 +122,7 @@ export function MazeWorkspace({
       if (nextCell.location.x === goal.x && nextCell.location.y === goal.y) {
         setCleared(true);
         setShowClearDialog(true);
-        throw new BlocklyEditorMessage(
-          "迷路をクリアしました！次のステップに進みましょう！"
-        );
+        throw new BlocklyEditorMessage("迷路をクリアしました！");
       }
     },
     [CUSTOM_MAZE_CHECKWALL]: (direction: MazeDirection) => {
@@ -206,14 +204,20 @@ export function MazeWorkspace({
           </Box>
         </Box>
       </Grid>
-      <ClearDialog visible={showClearDialog}
-        next={() => {
-          setShowClearDialog(false);
-          if (next) {
-            next();
-          }
-        }}
+      <ClearDialog
+        visible={showClearDialog}
+        next={
+          next
+            ? () => {
+                setShowClearDialog(false);
+                next();
+              }
+            : null
+        }
         onClose={() => setShowClearDialog(false)}
+        home={() => {
+          window.location.href = "https://kf75.utcode.net";
+        }}
       />
     </>
   );
