@@ -1,4 +1,5 @@
 import { Box, Grid, Text } from "@chakra-ui/react";
+import { Video } from "../../components/Video";
 import type { TutorialDialogPropsStep } from "../../components/Dialogs/TutorialDialog";
 
 export const step1: TutorialDialogPropsStep[] = [
@@ -12,13 +13,7 @@ export const step1: TutorialDialogPropsStep[] = [
           ブロックを駆使して、プログラミングを体験してみましょう！
           では、右下の「次へ」ボタンをクリックしましょう。
         </Text>
-        <video
-          src={new URL("./maze-block.mp4", import.meta.url).toString()}
-          muted
-          autoPlay
-          loop
-          width="100%"
-        />
+        <Video src={new URL("./maze-block.mp4", import.meta.url).toString()} />
       </>
     ),
   },
@@ -31,17 +26,12 @@ export const step1: TutorialDialogPropsStep[] = [
           なお、この文章が書かれているポップアップは、右上の「ヘルプ」からいつでも開くことができます。
           いつでも見返してくださいね。では、右下の「はじめる」ボタンをクリックしてください！
         </Text>
-        <video
-          src={new URL("./maze-step1.mp4", import.meta.url).toString()}
-          muted
-          autoPlay
-          loop
-          width="100%"
-        />
+        <Video src={new URL("./maze-step1.mp4", import.meta.url).toString()} />
       </>
     ),
   },
 ];
+
 export const step2: TutorialDialogPropsStep[] = [
   {
     title: "もっと動かしてみましょう！",
@@ -53,13 +43,7 @@ export const step2: TutorialDialogPropsStep[] = [
           2 ではもう少し大きな迷路をクリアしてみましょう。
           右下の「はじめる」ボタンをクリックしてください！
         </Text>
-        <video
-          src={new URL("./maze-step2.mp4", import.meta.url).toString()}
-          muted
-          autoPlay
-          loop
-          width="100%"
-        />
+        <Video src={new URL("./maze-step2.mp4", import.meta.url).toString()} />
       </>
     ),
   },
@@ -75,12 +59,8 @@ export const step3: TutorialDialogPropsStep[] = [
           <strong>どんな迷路にも対応できる</strong>
           プログラムを作りましょう。
         </Text>
-        <video
+        <Video
           src={new URL("./maze-advanced.mp4", import.meta.url).toString()}
-          muted
-          autoPlay
-          loop
-          width="100%"
         />
       </>
     ),

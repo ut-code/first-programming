@@ -41,7 +41,6 @@ export function GlobalHeader({ Hint, children }: Props) {
             px={4}
             type="button"
             transition="color 0.2s"
-            _hover={{ color: "blue.300" }}
             colorScheme="green"
             onClick={() => {
               window.location.href = "https://kf75.utcode.net";
