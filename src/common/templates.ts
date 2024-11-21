@@ -1,4 +1,4 @@
-//xml形式でテンプレートを作成できる
+//xml形式で左手法のテンプレートを作成できる
 export const templates = [
   {
     name: "Template 1",
