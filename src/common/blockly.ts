@@ -15,7 +15,9 @@ export type BlocklyToolboxDefinitionCategory = {
   enableVariables?: boolean;
 };
 
-export type BlocklyToolboxDefinition = BlocklyToolboxDefinitionFlyout | BlocklyToolboxDefinitionCategory;
+export type BlocklyToolboxDefinition =
+  | BlocklyToolboxDefinitionFlyout
+  | BlocklyToolboxDefinitionCategory;
 
 export type UseBlocklyWorkspaceProps = {
   toolboxDefinition: BlocklyToolboxDefinition;
@@ -39,60 +41,75 @@ export function useBlocklyWorkspace({
     workspaceRef.current?.highlightBlock(id);
   }, []);
 
-  const getCode = useCallback(() => javascriptGenerator.workspaceToCode(workspaceRef.current), []);
+  const getCode = useCallback(
+    () => javascriptGenerator.workspaceToCode(workspaceRef.current),
+    []
+  );
 
   useEffect(() => {
     const workspaceArea = workspaceAreaRef.current;
     if (!workspaceArea) return undefined;
-    const workspace = Blockly.inject(workspaceArea, {
-      toolbox:
-        toolboxDefinition.type === "flyout"
-          ? {
-              kind: "flyoutToolbox",
-              contents: toolboxDefinition.blockTypes.map((type) => ({
-                kind: "block",
-                type,
-              })),
-            }
-          : {
-              kind: "categoryToolbox",
-              contents: [
-                ...toolboxDefinition.categories.map((category) => ({
-                  kind: "category",
-                  name: category.name,
-                  contents: category.blockTypes.map((type) => ({
+
+    const toolbox =
+      toolboxDefinition.type === "flyout"
+        ? {
+            kind: "flyoutToolbox",
+            contents: [
+              ...(toolboxDefinition.type === "flyout"
+                ? toolboxDefinition.blockTypes.map((type) => ({
                     kind: "block",
                     type,
-                  })),
-                })),
-                ...(toolboxDefinition.enableVariables ? [{ kind: "category", name: "変数", custom: "VARIABLE" }] : []),
-              ],
-            },
+                  }))
+                : []),
+                //テンプレートを作成
+              {
+                kind: "block",
+                blockxml: `
+                    <block type="custom_while_true">
+                      <statement name="STATEMENTS">
+                        <block type="custom_common_if_else">
+                          <value name="EXPRESSION">
+                          </value>
+                          <statement name="TRUE_STATEMENTS">
+                          </statement>
+                          <statement name="FALSE_STATEMENTS">
+                          </statement>
+                        </block>
+                      </statement>
+                    </block>
+                  `,
+              },
+            ],
+          }
+        : {
+            kind: "categoryToolbox",
+            contents: [
+              ...(toolboxDefinition.type === "category"
+                ? toolboxDefinition.categories.map((category) => ({
+                    kind: "category",
+                    name: category.name,
+                    contents: category.blockTypes.map((type) => ({
+                      kind: "block",
+                      type,
+                    })),
+                  }))
+                : []),
+              ...(toolboxDefinition.enableVariables
+                ? [{ kind: "category", name: "変数", custom: "VARIABLE" }]
+                : []),
+            ],
+          };
+
+    const workspace = Blockly.inject(workspaceArea, {
+      toolbox,
       grid: { spacing: 20, length: 3, colour: "#ccc", snap: true },
       trashcan: true,
       renderer: "thrasos",
       move: { drag: true, scrollbars: true, wheel: true },
     });
-    if (onCodeChange) {
-      let previousCode = "";
-      workspace.addChangeListener(() => {
-        const latestCode = getCode();
-        if (previousCode !== latestCode) {
-          previousCode = latestCode;
-          // onCodeChange(latestCode, workspace.getAllVariableNames());
-          onCodeChange(
-            latestCode,
-            Blockly.Variables.allUsedVarModels(workspace).map((model: VariableModel) => model.name),
-          );
-        }
-      });
-    }
-    workspaceRef.current = workspace;
 
-    return () => {
-      workspace.dispose();
-    };
-  }, [toolboxDefinition, onCodeChange, getCode]);
+    return () => workspace.dispose();
+  }, [toolboxDefinition, workspaceAreaRef]);
 
   return {
     workspaceAreaRef,
