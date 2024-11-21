@@ -1,6 +1,7 @@
 import Blockly, { type VariableModel } from "blockly";
 import { useCallback, useEffect, useRef } from "react";
 import { javascriptGenerator } from "./types.blockly";
+import { templates } from "./templates";
 
 /** ブロックの数が少ない場合 */
 export type BlocklyToolboxDefinitionFlyout = {
@@ -53,34 +54,22 @@ export function useBlocklyWorkspace({
     const toolbox =
       toolboxDefinition.type === "flyout"
         ? {
-            kind: "flyoutToolbox",
-            contents: [
-              ...(toolboxDefinition.type === "flyout"
-                ? toolboxDefinition.blockTypes.map((type) => ({
-                    kind: "block",
-                    type,
-                  }))
-                : []),
-                //テンプレートを作成
-              {
-                kind: "block",
-                blockxml: `
-                    <block type="custom_while_true">
-                      <statement name="STATEMENTS">
-                        <block type="custom_common_if_else">
-                          <value name="EXPRESSION">
-                          </value>
-                          <statement name="TRUE_STATEMENTS">
-                          </statement>
-                          <statement name="FALSE_STATEMENTS">
-                          </statement>
-                        </block>
-                      </statement>
-                    </block>
-                  `,
-              },
-            ],
-          }
+          kind: "flyoutToolbox",
+          contents: [
+            // 通常のブロックを追加
+            ...(toolboxDefinition.type === "flyout"
+              ? toolboxDefinition.blockTypes.map((type) => ({
+                  kind: "block",
+                  type,
+                }))
+              : []),
+            // テンプレートを追加
+            ...templates.map((template) => ({
+              kind: "block",
+              blockxml: template.blockxml,
+            })),
+          ],
+        }
         : {
             kind: "categoryToolbox",
             contents: [
