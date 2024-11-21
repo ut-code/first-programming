@@ -1,4 +1,12 @@
-import { Box, Button, Flex, Icon, Link, Spacer, chakra } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  Link,
+  Spacer,
+  chakra,
+} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { RiGithubFill, RiQuestionFill } from "react-icons/ri";
 import { CommonHelp } from "../components/Dialogs/HelpDialog";
@@ -17,16 +25,40 @@ export function GlobalHeader({ Hint, children }: Props) {
   return (
     <>
       <Flex direction="column" height="100%">
-        <Flex align="center" justify="space-between" shadow="md" backgroundColor="gray.50" px={3}>
+        <Flex
+          align="center"
+          justify="space-between"
+          shadow="md"
+          backgroundColor="gray.50"
+          px={3}
+        >
           <Logo />
           <Box display={{ base: "none", lg: "block" }} fontSize="xl">
             はじめてのプログラミング
           </Box>
           <Spacer />
-          <Button colorScheme="blue" variant="outline" onClick={() => setShowCommonHelp(true)} px={3} py={2} m={3}>
+          <Button
+            px={4}
+            type="button"
+            transition="color 0.2s"
+            _hover={{ color: "blue.300" }}
+            colorScheme="green"
+            onClick={() => {
+              window.location.href = "https://kf75.utcode.net";
+            }}
+          >
+            駒場祭ホームページへ
+          </Button>
+          <Button
+            colorScheme="blue"
+            variant="outline"
+            onClick={() => setShowCommonHelp(true)}
+            px={3}
+            py={2}
+            m={3}
+          >
             基本操作
           </Button>
-
           <Box display="flex" alignItems="stretch">
             <chakra.button
               px={4}
