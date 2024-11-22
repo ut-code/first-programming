@@ -108,7 +108,9 @@ export const step3: TutorialDialogPropsStep[] = [
     content: (
       <>
         <Text my={2}>
-          ブロックの一番下にテンプレートが用意されています。このテンプレートに<strong>赤色の</strong>ブロックを加えることで、どんな迷路にも対応できるプログラムを作ることができます。左手法を意識して、いろいろな迷路をクリアしてみましょう！
+          ブロックの一番下にテンプレートが用意されています。このテンプレートに
+          <strong>赤色のブロックを 3 つ加える</strong>
+          ことで、どんな迷路にも対応できるプログラムを作ることができます。左手法を意識して、いろいろな迷路をクリアしてみましょう！
         </Text>
         <Video
           src={new URL("./maze-step3-4.mp4", import.meta.url).toString()}
