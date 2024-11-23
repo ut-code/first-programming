@@ -90,7 +90,7 @@ export const CUSTOM_COMMON_DO_UNTIL = "custom_do_until";
 Blockly.Blocks[CUSTOM_COMMON_DO_UNTIL] = {
   init(this: Blockly.Block) {
     this.appendValueInput(CUSTOM_COMMON_FIELD_EXPRESSION).setCheck("Boolean");
-    this.appendDummyInput().appendField("になるまで");
+    this.appendDummyInput().appendField("になるまでずっと");
     this.appendStatementInput(CUSTOM_COMMON_FIELD_STATEMENTS).setCheck(null);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
