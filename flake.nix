@@ -17,6 +17,7 @@
           inherit name;
           buildInputs = with pkgs; [ bun ];
           shellHook = ''
+            export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib"
           '';
         };
       });
