@@ -1,3 +1,4 @@
+name: Workflow CI
 on:
   push:
     branches: [main]
