@@ -225,7 +225,7 @@ export function MazeWorkspace({
         }
         onClose={() => setShowClearDialog(false)}
         home={() => {
-          window.location.href = "https://kf75.utcode.net";
+          window.location.href = "https://festival.utcode.net";
         }}
       />
     </>
