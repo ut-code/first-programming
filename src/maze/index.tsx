@@ -12,16 +12,19 @@ export function Maze({ setHint }: Props) {
   // TODO: consider using path based routing
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   useEffect(() => {
-    if (!setHint) return;
     switch (step) {
       case 1:
-        return setHint(step1);
+        setHint(step1);
+        break;
       case 2:
-        return setHint(step2);
+        setHint(step2);
+        break;
       case 3:
-        return setHint(step3);
+        setHint(step3);
+        break;
       case 4:
-        return setHint(step4);
+        setHint(step4);
+        break;
       default:
         step satisfies never;
     }

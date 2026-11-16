@@ -19,7 +19,11 @@ export type UseBlocklyInterpreterProps = {
   onStep?(blockId: string | null): void;
 };
 
-export type BlocklyInterpreterState = "stopped" | "running" | "paused" | "finished";
+export type BlocklyInterpreterState =
+  | "stopped"
+  | "running"
+  | "paused"
+  | "finished";
 
 export type BlocklyInterpreter = {
   state: BlocklyInterpreterState;
@@ -47,25 +51,35 @@ export function useBlocklyInterpreter({
    */
   const highlightedBlockIdRef = useRef<string>();
 
-  const [executionState, setExecutionState] = useState<BlocklyInterpreterState>("stopped");
+  const [executionState, setExecutionState] =
+    useState<BlocklyInterpreterState>("stopped");
 
   const prepareExecution = useCallback(
     (code: string) => {
-      jsInterpreterRef.current = new JSInterpreter(code, (newInterpreter, globalScope) => {
-        Object.entries(globalFunctions).forEach(([functionName, globalFunction]) => {
-          newInterpreter.setProperty(globalScope, functionName, newInterpreter.createNativeFunction(globalFunction));
-        });
-        newInterpreter.setProperty(
-          globalScope,
-          STATEMENT_PREFIX_FUNCTION,
-          newInterpreter.createNativeFunction((blockId: string) => {
-            highlightedBlockIdRef.current = blockId;
-            onStep?.(blockId);
-          }),
-        );
-      });
+      jsInterpreterRef.current = new JSInterpreter(
+        code,
+        (newInterpreter, globalScope) => {
+          Object.entries(globalFunctions).forEach(
+            ([functionName, globalFunction]) => {
+              newInterpreter.setProperty(
+                globalScope,
+                functionName,
+                newInterpreter.createNativeFunction(globalFunction)
+              );
+            }
+          );
+          newInterpreter.setProperty(
+            globalScope,
+            STATEMENT_PREFIX_FUNCTION,
+            newInterpreter.createNativeFunction((blockId: string) => {
+              highlightedBlockIdRef.current = blockId;
+              onStep?.(blockId);
+            })
+          );
+        }
+      );
     },
-    [globalFunctions, onStep],
+    [globalFunctions, onStep]
   );
 
   const startExecution = useCallback(
@@ -73,7 +87,7 @@ export function useBlocklyInterpreter({
       prepareExecution(code);
       setExecutionState("running");
     },
-    [prepareExecution],
+    [prepareExecution]
   );
   const pauseExecution = useCallback(() => {
     setExecutionState("paused");
