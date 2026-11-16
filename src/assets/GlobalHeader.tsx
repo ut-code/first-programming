@@ -43,10 +43,10 @@ export function GlobalHeader({ Hint, children }: Props) {
             transition="color 0.2s"
             colorScheme="green"
             onClick={() => {
-              window.location.href = "https://kf77.utcode.net";
+              window.location.href = "https://festival.utcode.net";
             }}
           >
-            駒場祭トップページへ
+            学園祭トップページへ
           </Button>
           <Button
             colorScheme="blue"
