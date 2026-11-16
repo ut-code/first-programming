@@ -2,6 +2,9 @@
   "name": "utcode-festival",
   "version": "1.0.0",
   "description": "はじめてのプログラミング教室",
+  "engines": {
+    "node": ">=26"
+  },
   "scripts": {
     "dev": "parcel src/index.html",
     "build": "parcel build src/index.html && cp -R public/* dist",
