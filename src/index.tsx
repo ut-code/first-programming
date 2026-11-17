@@ -20,5 +20,5 @@ createRoot(root).render(
         <App />
       </ChakraProvider>
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>
 );

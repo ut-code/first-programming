@@ -4,7 +4,7 @@ Forked from: https://github.com/ut-code/school-festival
 
 ## 依存
 
-- Node.js
+- Node.js 26 以上
 - Go
 - GNU Make
 

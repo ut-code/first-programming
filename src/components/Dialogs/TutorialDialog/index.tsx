@@ -15,6 +15,8 @@ import { Fragment, useState } from "react";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { isHintOpen } from "../../../atoms";
 
+/* eslint-disable react/jsx-no-bind */
+
 export type TutorialDialogProps = {
   title: string;
   isFirstView: boolean;
@@ -55,6 +57,7 @@ export function TutorialDialog(props: TutorialDialogProps): JSX.Element {
                   colorScheme={i === selectedIndex ? "blue" : undefined}
                   variant={i === selectedIndex ? "solid" : "unstyled"}
                   // isDisabled={i === selectedIndex}
+                  // eslint-disable-next-line react/jsx-no-bind
                   onClick={() => {
                     setSelectedIndex(i);
                   }}
@@ -71,7 +74,7 @@ export function TutorialDialog(props: TutorialDialogProps): JSX.Element {
             {selectedIndex !== 0 && (
               <Button
                 onClick={() => setSelectedIndex(selectedIndex - 1)}
-                variant={"outline"}
+                variant="outline"
               >
                 前へ
               </Button>
@@ -80,14 +83,14 @@ export function TutorialDialog(props: TutorialDialogProps): JSX.Element {
               <Button
                 onClick={() => setSelectedIndex(selectedIndex + 1)}
                 colorScheme={props.isFirstView ? "blue" : undefined}
-                variant={"outline"}
+                variant="outline"
               >
                 次へ
               </Button>
             )}
             {(!props.isFirstView ||
               selectedIndex === props.steps.length - 1) && (
-              <Button onClick={onClose} variant={"solid"} colorScheme={"blue"}>
+              <Button onClick={onClose} variant="solid" colorScheme="blue">
                 はじめる
               </Button>
             )}

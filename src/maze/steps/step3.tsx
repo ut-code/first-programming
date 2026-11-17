@@ -10,7 +10,7 @@ export default function Step3({ prev, next }: Props) {
       width={5}
       height={5}
       description="テンプレートを使って、汎用アルゴリズムを構築しよう"
-      allowReset={true}
+      allowReset
       prev={prev}
       next={next}
     />

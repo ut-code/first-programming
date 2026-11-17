@@ -7,11 +7,11 @@ import {
   Spacer,
   chakra,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RiGithubFill, RiQuestionFill } from "react-icons/ri";
+import { useAtom } from "jotai";
 import { CommonHelp } from "../components/Dialogs/HelpDialog";
 import { Logo } from "../components/Logo";
-import { useAtom } from "jotai";
 import { isHintOpen } from "../atoms";
 
 type Props = {
@@ -20,7 +20,7 @@ type Props = {
 };
 export function GlobalHeader({ Hint, children }: Props) {
   const [showCommonHelp, setShowCommonHelp] = useState(false);
-  const [_, setShowHint] = useAtom(isHintOpen);
+  const [, setShowHint] = useAtom(isHintOpen);
 
   return (
     <>
@@ -46,7 +46,7 @@ export function GlobalHeader({ Hint, children }: Props) {
               window.location.href = "https://festival.utcode.net";
             }}
           >
-            五月祭トップページへ
+            学園祭トップページへ
           </Button>
           <Button
             colorScheme="blue"

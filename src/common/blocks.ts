@@ -17,7 +17,9 @@ Blockly.Blocks[CUSTOM_COMMON_IF] = {
     this.appendDummyInput().appendField("もし");
     this.appendValueInput(CUSTOM_COMMON_FIELD_EXPRESSION).setCheck("Boolean");
     this.appendDummyInput().appendField("ならば");
-    this.appendStatementInput(CUSTOM_COMMON_FIELD_TRUE_STATEMENTS).setCheck(null);
+    this.appendStatementInput(CUSTOM_COMMON_FIELD_TRUE_STATEMENTS).setCheck(
+      null
+    );
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(210);
@@ -25,8 +27,13 @@ Blockly.Blocks[CUSTOM_COMMON_IF] = {
   },
 };
 javascriptGenerator[CUSTOM_COMMON_IF] = (block) => {
-  const expression = javascriptGenerator.valueToCode(block, CUSTOM_COMMON_FIELD_EXPRESSION, 0) || "false";
-  const trueStatements = javascriptGenerator.statementToCode(block, CUSTOM_COMMON_FIELD_TRUE_STATEMENTS);
+  const expression =
+    javascriptGenerator.valueToCode(block, CUSTOM_COMMON_FIELD_EXPRESSION, 0) ||
+    "false";
+  const trueStatements = javascriptGenerator.statementToCode(
+    block,
+    CUSTOM_COMMON_FIELD_TRUE_STATEMENTS
+  );
   return `if(${expression}){${trueStatements}}`;
 };
 
@@ -36,19 +43,33 @@ Blockly.Blocks[CUSTOM_COMMON_IF_ELSE] = {
     this.appendDummyInput().appendField("もし");
     this.appendValueInput(CUSTOM_COMMON_FIELD_EXPRESSION).setCheck(null);
     this.appendDummyInput().appendField("ならば");
-    this.appendStatementInput(CUSTOM_COMMON_FIELD_TRUE_STATEMENTS).setCheck(null);
+    this.appendStatementInput(CUSTOM_COMMON_FIELD_TRUE_STATEMENTS).setCheck(
+      null
+    );
     this.appendDummyInput().appendField("違えば");
-    this.appendStatementInput(CUSTOM_COMMON_FIELD_FALSE_STATEMENTS).setCheck(null);
+    this.appendStatementInput(CUSTOM_COMMON_FIELD_FALSE_STATEMENTS).setCheck(
+      null
+    );
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(210);
-    this.setTooltip("条件が満たされた場合は1番目の文を、満たされない場合は2番目の文を実行します。");
+    this.setTooltip(
+      "条件が満たされた場合は1番目の文を、満たされない場合は2番目の文を実行します。"
+    );
   },
 };
 javascriptGenerator[CUSTOM_COMMON_IF_ELSE] = (block) => {
-  const expression = javascriptGenerator.valueToCode(block, CUSTOM_COMMON_FIELD_EXPRESSION, 0) || "false";
-  const trueStatements = javascriptGenerator.statementToCode(block, CUSTOM_COMMON_FIELD_TRUE_STATEMENTS);
-  const falseStatements = javascriptGenerator.statementToCode(block, CUSTOM_COMMON_FIELD_FALSE_STATEMENTS);
+  const expression =
+    javascriptGenerator.valueToCode(block, CUSTOM_COMMON_FIELD_EXPRESSION, 0) ||
+    "false";
+  const trueStatements = javascriptGenerator.statementToCode(
+    block,
+    CUSTOM_COMMON_FIELD_TRUE_STATEMENTS
+  );
+  const falseStatements = javascriptGenerator.statementToCode(
+    block,
+    CUSTOM_COMMON_FIELD_FALSE_STATEMENTS
+  );
   return `if(${expression}){${trueStatements}}else{${falseStatements}}`;
 };
 
@@ -64,7 +85,10 @@ Blockly.Blocks[CUSTOM_COMMON_WHILE_TRUE] = {
   },
 };
 javascriptGenerator[CUSTOM_COMMON_WHILE_TRUE] = (block) => {
-  const statements = javascriptGenerator.statementToCode(block, CUSTOM_COMMON_FIELD_STATEMENTS);
+  const statements = javascriptGenerator.statementToCode(
+    block,
+    CUSTOM_COMMON_FIELD_STATEMENTS
+  );
   return `while(true){${statements}}`;
 };
 
@@ -81,8 +105,13 @@ Blockly.Blocks[CUSTOM_COMMON_WHILE] = {
   },
 };
 javascriptGenerator[CUSTOM_COMMON_WHILE] = (block) => {
-  const expression = javascriptGenerator.valueToCode(block, CUSTOM_COMMON_FIELD_EXPRESSION, 0) || "false";
-  const statements = javascriptGenerator.statementToCode(block, CUSTOM_COMMON_FIELD_STATEMENTS);
+  const expression =
+    javascriptGenerator.valueToCode(block, CUSTOM_COMMON_FIELD_EXPRESSION, 0) ||
+    "false";
+  const statements = javascriptGenerator.statementToCode(
+    block,
+    CUSTOM_COMMON_FIELD_STATEMENTS
+  );
   return `while(${expression}){${statements}}`;
 };
 
@@ -99,8 +128,13 @@ Blockly.Blocks[CUSTOM_COMMON_DO_UNTIL] = {
   },
 };
 javascriptGenerator[CUSTOM_COMMON_DO_UNTIL] = (block) => {
-  const expression = javascriptGenerator.valueToCode(block, CUSTOM_COMMON_FIELD_EXPRESSION, 0) || "false";
-  const statements = javascriptGenerator.statementToCode(block, CUSTOM_COMMON_FIELD_STATEMENTS);
+  const expression =
+    javascriptGenerator.valueToCode(block, CUSTOM_COMMON_FIELD_EXPRESSION, 0) ||
+    "false";
+  const statements = javascriptGenerator.statementToCode(
+    block,
+    CUSTOM_COMMON_FIELD_STATEMENTS
+  );
   return `while(!(${expression})){${statements}}`;
 };
 
@@ -120,7 +154,12 @@ let tempVariableIndex = 0;
 javascriptGenerator[CUSTOM_COMMON_TIMES] = (block) => {
   const tempVariableName = `blocklyTempVariable${CUSTOM_COMMON_TIMES}${tempVariableIndex}`;
   tempVariableIndex += 1;
-  const expression = javascriptGenerator.valueToCode(block, CUSTOM_COMMON_FIELD_EXPRESSION, 0) || "0";
-  const statements = javascriptGenerator.statementToCode(block, CUSTOM_COMMON_FIELD_STATEMENTS);
+  const expression =
+    javascriptGenerator.valueToCode(block, CUSTOM_COMMON_FIELD_EXPRESSION, 0) ||
+    "0";
+  const statements = javascriptGenerator.statementToCode(
+    block,
+    CUSTOM_COMMON_FIELD_STATEMENTS
+  );
   return `for (var ${tempVariableName} = 0; ${tempVariableName} < (${expression}); ${tempVariableName}++) {${statements}}`;
 };

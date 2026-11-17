@@ -14,6 +14,7 @@ export function Video(props: {
   } = props;
 
   return (
+    // eslint-disable-next-line jsx-a11y/media-has-caption
     <video
       src={src}
       muted={muted}

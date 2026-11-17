@@ -1,4 +1,4 @@
-import Blockly, { type VariableModel } from "blockly";
+import Blockly from "blockly";
 import { useCallback, useEffect, useRef } from "react";
 import { javascriptGenerator } from "./types.blockly";
 import { templates } from "./templates";
@@ -22,7 +22,6 @@ export type BlocklyToolboxDefinition =
 
 export type UseBlocklyWorkspaceProps = {
   toolboxDefinition: BlocklyToolboxDefinition;
-  onCodeChange?: (code: string, variableNames: string[]) => void;
 };
 
 export type UseBlocklyWorkspaceReturnValue = {
@@ -33,7 +32,6 @@ export type UseBlocklyWorkspaceReturnValue = {
 
 export function useBlocklyWorkspace({
   toolboxDefinition,
-  onCodeChange,
 }: UseBlocklyWorkspaceProps): UseBlocklyWorkspaceReturnValue {
   const workspaceAreaRef = useRef<HTMLDivElement>(null);
   const workspaceRef = useRef<Blockly.WorkspaceSvg>();
@@ -54,22 +52,22 @@ export function useBlocklyWorkspace({
     const toolbox =
       toolboxDefinition.type === "flyout"
         ? {
-          kind: "flyoutToolbox",
-          contents: [
-            // 通常のブロックを追加
-            ...(toolboxDefinition.type === "flyout"
-              ? toolboxDefinition.blockTypes.map((type) => ({
-                  kind: "block",
-                  type,
-                }))
-              : []),
-            // テンプレートを追加
-            ...templates.map((template) => ({
-              kind: "block",
-              blockxml: template.blockxml,
-            })),
-          ],
-        }
+            kind: "flyoutToolbox",
+            contents: [
+              // 通常のブロックを追加
+              ...(toolboxDefinition.type === "flyout"
+                ? toolboxDefinition.blockTypes.map((type) => ({
+                    kind: "block",
+                    type,
+                  }))
+                : []),
+              // テンプレートを追加
+              ...templates.map((template) => ({
+                kind: "block",
+                blockxml: template.blockxml,
+              })),
+            ],
+          }
         : {
             kind: "categoryToolbox",
             contents: [
