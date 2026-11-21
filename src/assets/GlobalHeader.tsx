@@ -95,7 +95,7 @@ export function GlobalHeader({ Hint, children }: Props) {
             </Link>
           </Box>
         </Flex>
-        <Box position="relative" flexGrow={1}>
+        <Box position="relative" flex="1" minH={0} w="100%">
           {children}
         </Box>
       </Flex>

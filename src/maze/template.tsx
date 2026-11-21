@@ -156,9 +156,9 @@ export function MazeWorkspace({
 
   return (
     <>
-      <Grid h="100%" templateColumns="1fr 25rem">
+      <Grid h="100%" minH={0} templateColumns="1fr 25rem">
         <div ref={workspaceAreaRef} />
-        <Box overflow="auto">
+        <Box h="100%" minH={0} overflowY="auto" overscrollBehavior="contain">
           <Box p={4}>
             <ExecutionWindow
               interpreter={interpreter}
